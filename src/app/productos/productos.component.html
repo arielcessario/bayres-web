@@ -1,0 +1,30 @@
+<div id="productos-result">
+    <div id="productos-result-order">
+        <span>Ordenar por: </span>
+        <select name="" id="" [(ngModel)]="orderBy" (change)="ordenar()">
+            <option value="nombre" selected>Nombre</option>
+            <option value="precioAsc">Menor Precio</option>
+            <option value="precioDesc">Mayor Precio</option>
+            <option value="deseado">Deseado</option>
+            <option value="en_slider">Oferta</option>
+            <option value="destacado">Destacado</option>
+            <option value="en_carrito">En mi Carrito</option>
+        </select>
+        <div *ngIf="categoria.nombre != null"><span>Categoría: {{categoria.nombre}}</span>
+            <button (click)="categoria={};orderBy='nombre'; filterCategory(); ">Mostrar Todo</button>
+        </div>
+    </div>
+    <div id="productos-results" style="height: 600px; margin-bottom: 60px;">
+        <!--<div class="producto-item" *ngFor="let item of dataFinal">-->
+        <!--<producto-component [item]="item"></producto-component>-->
+        <!--</div>-->
+        <virtual-scroll style="width: 100%; height: 100%" [childWidth]="250" [items]="dataFinal" (update)="viewPortItems = $event">
+            <producto-component class="producto-item" *ngFor="let item of viewPortItems" [item]="item">
+            </producto-component >
+        </virtual-scroll>
+
+    </div>
+
+
+
+</div>

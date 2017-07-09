@@ -1,0 +1,130 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the button component.
+// -----------------------------------------------------------------------------
+@import '../../app.component.scss';
+:host {
+  position: relative;
+
+}
+
+.producto-item {
+  @include shadow(2, black);
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  margin: 5px;
+  width: 250px;
+  min-width: 250px;
+  height: 280px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  &:hover{
+    @include transform(scale(1.03));
+    @include transition(0.3s);
+    @include shadow(3, black);
+  }
+
+  .fa-shopping-cart{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: white;
+    padding: 3px 4px 3px 4px;
+    border: 2px solid white;
+    @include shadow(2, black);
+    border-radius: 20px;
+    background-color: #8ed758;
+
+  }
+}
+
+.producto-item-top {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.producto-item-img-container {
+  width: 96%;
+  overflow: hidden;
+  margin-top: 2%;
+  position: relative;
+  span {
+
+    .destacado {
+    }
+
+    .oferta {
+    }
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: red;
+
+    color: white;
+    font-weight: 700;
+    padding: 3px 5px 3px 5px;
+  }
+  .producto-item-img {
+    height: 180px;
+    width: 100%;
+    object-fit: cover;
+  }
+}
+
+.producto-titulo-container {
+  background-color: black;
+  height: 30px;
+  width: 242px;
+
+  overflow: hidden;
+  padding: 4px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.producto-titulo {
+  width: calc(100% - 10px);
+  max-width: 100%;
+  text-transform: uppercase;
+  top: 0;
+  left: 0;
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+
+.producto-item-bottom {
+  background-color: black;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  width: 100%;
+  position: relative;
+  i {
+    color: white;
+    margin: 5px;
+    cursor: pointer;
+  }
+
+  .producto-item-precio {
+    font-weight: 700;
+    top: 3px;
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+    color: white;
+  }
+}
+
+
+

@@ -1,0 +1,131 @@
+<div id="carrito-main">
+    <div id="carrito-title">
+        <h1>CARRITO</h1>
+        <i class="fa fa-home" aria-hidden="true" style="cursor: pointer" (click)="goTo('principal')"></i>
+    </div>
+    <div class="carrito-items-title">
+        <span>PRODUCTOS SELECCIONADOS</span>
+        <span>VALOR</span>
+        <span>CANTIDAD</span>
+        <span>SUBTOTAL</span>
+    </div>
+    <div id="carrito-items">
+        <div class="carrito-item" *ngFor="let item of items">
+            <div class="carrito-item-body">
+                <div class="carrito-item-left">
+                    <img [src]="'http://bayresnoproblem.com.ar/images/'+item.fotos[0].nombre" alt="">
+                </div>
+                <div id="carrito-item-center">
+                    <div id="carrito-item-center-top"><span class="carrito-item-nombre">{{item.nombre}}</span></div>
+                    <div id="carrito-item-center-bottom">
+                        <i class="fa fa-share-alt" aria-hidden="true"></i>
+                        <i class="fa fa-heart" [ngClass]="{'deseado': item.deseado}" aria-hidden="true"
+                           (click)="desear(item)"></i>
+                        <i class="fa fa-search" aria-hidden="true"
+                           (click)="goTo('producto/' + item['producto_id'])"></i>
+                    </div>
+                </div>
+                <div id="carrito-item-rigth">
+
+                    <i class="fa fa-trash" aria-hidden="true" (click)="update(item)"></i>
+                </div>
+            </div>
+            <span class="carrito-item-valor">{{item.precios[0].precio | currency:'USD':true}}</span>
+            <input type="number" step="1" [(ngModel)]="item.cantidad" (change)="coreService.updateCarrito(item)">
+            <span class="carrito-item-total">{{item.cantidad * item.precios[0].precio | currency:'USD':true}}</span>
+        </div>
+
+        <div class="carrito-item-mobile" *ngFor="let item of items">
+            <div id="carrito-item-center-top">
+                <span class="carrito-item-nombre">{{item.nombre |descLength:40}}</span>
+            </div>
+            <div class="carrito-item-body">
+                <div class="carrito-item-left">
+                    <img [src]="'http://bayresnoproblem.com.ar/images/'+item.fotos[0].nombre" alt="">
+
+                </div>
+                <div class="carrito-item-right">
+                    <div class="carrito-mobile-right-center">
+                        <span class="carrito-item-valor">c/u {{item.precios[0].precio | currency:'USD':true}}</span>
+                        <div class="carrito-mobile-cantidad-buttons">
+                            <span class="minus" (click)="item.cantidad = item.cantidad- 1; coreService.updateCarrito(item)">-</span>
+                            <input type="number" step="1" [(ngModel)]="item.cantidad"
+                                   (change)="coreService.updateCarrito(item)">
+                            <span class="plus" (click)="item.cantidad = item.cantidad+ 1; coreService.updateCarrito(item)">+</span>
+                        </div>
+
+
+                    </div>
+                    <div class="carrito-mobile-right-bottom">
+                        <span class="carrito-item-total">Subtotal: {{item.cantidad * item.precios[0].precio | currency:'USD':true}}</span>
+
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="carrito-mobile-item-buttons">
+                <i class="fa fa-trash" aria-hidden="true" (click)="update(item)"></i>
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+                <i class="fa fa-heart" [ngClass]="{'deseado': item.deseado}" aria-hidden="true"
+                   (click)="desear(item)"></i>
+                <i class="fa fa-search" aria-hidden="true"
+                   (click)="goTo('producto/' + item['producto_id'])"></i>
+            </div>
+        </div>
+    </div>
+    <div id="carrito-total">
+        <span>TOTAL: </span>
+        <span>&nbsp;{{total | currency:'USD':true}}</span>
+    </div>
+    <div class="carrito-items-title">
+        <span>ENVIO</span>
+    </div>
+    <div id="carrito-envio">
+        <select name="" id="tipo" [(ngModel)]="tipoEnvio">
+            <option *ngFor="let item of tipoEnvios" [value]="item.id">
+                {{item.name}}
+            </option>
+        </select>
+        <select *ngIf="tipoEnvio== 1" name="" id="envio" [(ngModel)]="lugarEnvio">
+            <option *ngFor="let item of provincias" [value]="item.id">
+                {{item.name}}
+            </option>
+        </select>
+        <select *ngIf="tipoEnvio== 2" id="retira"
+                [ngClass]="{'select-sucursales' : id == 2}"
+                [(ngModel)]="sucursal"
+                class="form-control control-select">
+            <option *ngFor="let item of sucursales" [value]="item.sucursal_id">
+                {{item.nombre + ' - ' + item.direccion}}
+            </option>
+        </select>
+
+        <form [formGroup]="formEnvio"
+              *ngIf="tipoEnvio== 1 && (user.calle == '' || user.calle == undefined || user.calle == null)" novalidate>
+            <div class="form-group">
+                <label for="">Calle</label>
+                <input type="text" class="form-control" formControlName="calle">
+                <!--<small class="text-danger">-->
+                <!--{{formErrors['calle']}}-->
+                <!--</small>-->
+            </div>
+            <div class="form-group">
+                <label for="">Número</label>
+                <input type="text" class="form-control" formControlName="nro">
+                <!--<small class="text-danger">-->
+                <!--{{formErrors['nro']}}-->
+                <!--</small>-->
+            </div>
+        </form>
+    </div>
+    <div id="carrito-disclaimer">
+        <span>Los envíos se realizan por medio de cadeteria, correo, empresa de transportes, según destino. El costo del mismo es a cargo del comprado, previo coordinación con el vendedor.</span>
+        <span>Recuerde que una vez realizado el pedido, usted recibirá un mail de confirmación. Luego de este mail, una persona de Bayres se pondrá en contacto para coordinar el envío.</span>
+    </div>
+    <div id="carrito-buttons">
+
+        <button (click)="confirmar()">Pedilo</button>
+    </div>
+</div>
+

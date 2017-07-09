@@ -1,0 +1,59 @@
+@import '../app.component.scss';
+.principal-container{
+  position: relative;
+  .principal-background{
+    position: absolute;
+    top: 600px;
+  }
+  .principal-section-title{
+    margin: 0;
+    width: 100%;
+    background-color: black;
+    font-size: 25px;
+    color: white;
+    text-align: center;
+    display: inline-block;
+    position: relative;
+  }
+
+  .principal-disclaimer{
+    width: 100%;
+    text-align: center;
+    color: $accent-1;
+    font-weight: 700;
+  }
+}
+
+
+#fondo-back {
+  //background: url('../../images/sucursales_01.png') top center no-repeat;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+#fondo-middle {
+  -webkit-filter: blur(2px);
+  filter: blur(2px);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  //background: url('../../images/sucursales_03.png') top center no-repeat;
+}
+
+#fondo-front {
+  //background: #00fefe url("../../images/sucursales_04.png") top center no-repeat fixed;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+
+.principal-main{
+  position: relative;
+  background: -webkit-linear-gradient(top, #466946, #d2f373, #466946);
+  background: linear-gradient(to bottom, #466946, #d2f373, #466946);
+}

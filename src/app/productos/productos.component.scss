@@ -1,0 +1,58 @@
+@import '../app.component.scss';
+:host {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: $nav-height;
+
+  background: -webkit-linear-gradient(top, #466946, #d2f373, #466946);
+  background: linear-gradient(to bottom, #466946, #d2f373, #466946);
+}
+
+:host {
+  max-height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+#productos-result {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: $max-width;
+  min-height: 600px;
+
+  #productos-result-order{
+    padding: 5px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+
+
+    span{
+      margin-left: 10px;
+      color: white;
+      font-weight: 700;
+    }
+
+    select{
+      font-size: 16px;
+      border: solid 1px #bfc1c2;
+      padding: 5px;
+      margin: 5px;
+    }
+  }
+
+  #productos-results {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+}

@@ -1,0 +1,39 @@
+
+
+2017-06-29 14:07:41: Main->__construct - No existe el permiso: desear
+2017-06-29 14:12:09: Productos->desear - No hay usuario
+2017-06-29 14:13:30: Productos->desear - No hay usuario
+2017-06-29 15:28:10: Productos->desear - No hay usuario
+2017-06-30 10:11:29: Productos->getProductos - Caught exception: Expired token
+
+2017-06-30 12:09:06: Productos->getProductos - Caught exception: Expired token
+
+2017-06-30 12:25:45: Productos->getProductos - Caught exception: Expired token
+
+2017-06-30 12:32:08: Productos->getProductos - Caught exception: Expired token
+
+2017-06-30 12:35:51: Productos->getProductos - Caught exception: Expired token
+
+2017-07-05 12:32:57: Producto createCarrito {} POST
+2017-07-05 12:36:21: Producto createCarrito {"productos":[173,271,168,389]} POST
+2017-07-05 12:37:23: Producto createCarrito {"productos":[173,271,168,389]} POST
+2017-07-05 12:39:46: Producto createCarrito {"productos":[173,271,168,389]} POST
+2017-07-05 12:40:10: Producto createCarrito {"productos":[173,271,168,389]} POST
+2017-07-05 18:27:46: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1 query: select p.producto_id, pr.precio from productos p inner join precios pr on p.producto_id = pr.producto_id where pr.precio_tipo_id = 1 and p.producto_id in ();
+2017-07-05 18:36:27: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1 query: select p.producto_id, pr.precio from productos p inner join precios pr on p.producto_id = pr.producto_id where pr.precio_tipo_id = 1 and p.producto_id in ();
+2017-07-05 18:40:08: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1 query: select p.producto_id, pr.precio from productos p inner join precios pr on p.producto_id = pr.producto_id where pr.precio_tipo_id = 1 and p.producto_id in ();
+2017-07-05 18:43:10: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '168,173,271,389)' at line 1 query: select p.producto_id, pr.precio from productos p inner join precios pr on p.producto_id = pr.producto_id where pr.precio_tipo_id = 1 and p.producto_id in (,168,173,271,389);
+2017-07-06 11:55:38: Productos->desear - Por favor ingrese con su usuario y contraseña
+2017-07-06 11:55:42: Productos->desear - Por favor ingrese con su usuario y contraseña
+2017-07-06 11:56:35: Productos->desear - Por favor ingrese con su usuario y contraseña
+2017-07-06 11:58:56: Productos->desear - Por favor ingrese con su usuario y contraseña
+2017-07-06 12:06:39: Productos->desear - Por favor ingrese con su usuario y contraseña
+2017-07-06 12:07:45: Productos->desear - Por favor ingrese con su usuario y contraseña
+2017-07-06 12:10:36: Productos->desear - Por favor ingrese con su usuario y contraseña
+2017-07-06 12:12:24: Productos->desear - Por favor ingrese con su usuario y contraseña
+2017-07-06 12:16:17: Productos->desear - Por favor ingrese con su usuario y contraseña
+2017-07-06 12:18:25: Productos->desear - Por favor ingrese con su usuario y contraseña
+2017-07-06 12:18:33: Productos->desear - Por favor ingrese con su usuario y contraseña
+2017-07-06 14:33:48: Main->__construct - No existe el permiso: getCarritos
+2017-07-06 14:33:48: Productos->getCarritos - Por favor ingrese con su usuario y contraseña
+2017-07-06 14:36:57: MySQL host or socket is not set

@@ -1,0 +1,102 @@
+<div id="slider-container" style="height: 600px;">
+    <div id="slider-carrousel">
+        <!--<img [src]="url" alt="" >-->
+        <div id="slider-01" *ngIf="visible == 1" [@enterAnimation]="visible == 1">
+            <img [src]="'http://bayresnoproblem.com.ar/images/'+items[items.length-1].fotos[0].nombre" alt="">
+            <div class="slider-descr">
+                <h1>{{items[items.length-1].nombre}}</h1>
+                <span>{{items[items.length-1].descripcion | descLength}}</span>
+                <div class="slider-precio">
+                    <h2>{{items[items.length-1].precios[0].precio | currency:'USD':true }}</h2>
+                    <button>{{frases[1]}}</button>
+                </div>
+                <div class="slider-descr-actions">
+                    <i class="fa fa-share-alt" aria-hidden="true"></i>
+                    <i class="fa fa-heart" [ngClass]="{'deseado': items[items.length-1].deseado}" aria-hidden="true"
+                       (click)="producto.desear(items[items.length-1])"></i>
+                    <!--<i class="fa fa-search" aria-hidden="true"></i>-->
+                </div>
+            </div>
+        </div>
+        <div id="slider-02" *ngIf="visible == 2"  [@enterAnimation]="visible == 2">
+            <img [src]="'http://bayresnoproblem.com.ar/images/'+items[items.length-2].fotos[1].nombre" alt="">
+            <div class="slider-descr">
+                <h1>{{items[items.length-2].nombre}}</h1>
+                <span>{{items[items.length-2].descripcion | descLength}}</span>
+                <h2>{{items[items.length-2].precios[0].precio | currency:'USD':true }}</h2>
+                <div class="slider-descr-actions">
+                    <i class="fa fa-share-alt" aria-hidden="true"></i>
+                    <i class="fa fa-heart" [ngClass]="{'deseado': items[items.length-2].deseado}" aria-hidden="true"
+                       (click)="producto.desear(items[items.length-2])"></i>
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+        <div id="slider-03" *ngIf="visible == 3" [@enterAnimation]="visible == 3">
+            <img [src]="'http://bayresnoproblem.com.ar/images/'+items[items.length-3].fotos[0].nombre" alt="">
+            <div class="slider-descr">
+                <h1>{{items[items.length-3].nombre}}</h1>
+                <span>{{items[items.length-3].descripcion | descLength}}</span>
+                <h2>{{items[items.length-3].precios[0].precio | currency:'USD':true }}</h2>
+                <div class="slider-descr-actions" >
+                    <i class="fa fa-share-alt" aria-hidden="true"></i>
+                    <i class="fa fa-heart" [ngClass]="{'deseado': items[items.length-3].deseado}" aria-hidden="true"
+                       (click)="producto.desear(items[items.length-3])"></i>
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+        <div id="slider-04" *ngIf="visible == 4" [@enterAnimation]="visible == 4">
+            <img [src]="'http://bayresnoproblem.com.ar/images/'+items[items.length-4].fotos[0].nombre">
+            <div class="slider-descr">
+                <h1>{{items[items.length-4].nombre}}</h1>
+                <span>{{items[items.length-4].descripcion | descLength}}</span>
+                <h2>{{items[items.length-4].precios[0].precio | currency:'USD':true }}</h2>
+                <div class="slider-descr-actions">
+                    <i class="fa fa-share-alt" aria-hidden="true"></i>
+                    <i class="fa fa-heart" [ngClass]="{'deseado': items[items.length-4].deseado}" aria-hidden="true"
+                       (click)="producto.desear(items[items.length-4])"></i>
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+
+        <div id="slider-05" *ngIf="visible == 5" [@enterAnimation]="visible == 5">
+            <img [src]="'http://bayresnoproblem.com.ar/images/'+items[items.length-5].fotos[0].nombre" alt="">
+            <div class="slider-descr">
+                <h1>{{items[items.length-5].nombre}}</h1>
+                <span>{{items[items.length-5].descripcion | descLength}}</span>
+                <h2>{{items[items.length-5].precios[0].precio | currency:'USD':true }}</h2>
+                <div class="slider-descr-actions">
+                    <i class="fa fa-share-alt" aria-hidden="true"></i>
+                    <i class="fa fa-heart" [ngClass]="{'deseado': items[items.length-5].deseado}" aria-hidden="true"
+                       (click)="producto.desear(items[items.length-5])"></i>
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+        <div id="slider-06" *ngIf="visible == 6" [@enterAnimation]="visible == 6">
+            <img [src]="'http://bayresnoproblem.com.ar/images/'+items[items.length-6].fotos[0].nombre">
+            <div class="slider-descr">
+                <h1>{{items[items.length-6].nombre}}</h1>
+                <span>{{items[items.length-6].descripcion | descLength}}</span>
+                <h2>{{items[items.length-6].precios[0].precio | currency:'USD':true }}</h2>
+                <div class="slider-descr-actions">
+                    <i class="fa fa-share-alt" aria-hidden="true"></i>
+                    <i class="fa fa-heart" [ngClass]="{'deseado': items[items.length-6].deseado}" aria-hidden="true"
+                       (click)="producto.desear(items[items.length-6])"></i>
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div id="slider-nav">
+        <div (click)="visible = 1; interval()" [ngClass]="{'slider-nav-selected': visible == 1}"></div>
+        <div (click)="visible = 2; interval()" [ngClass]="{'slider-nav-selected': visible == 2}"></div>
+        <div (click)="visible = 3; interval()" [ngClass]="{'slider-nav-selected': visible == 3}"></div>
+        <div (click)="visible = 4; interval()" [ngClass]="{'slider-nav-selected': visible == 4}"></div>
+        <div (click)="visible = 5; interval()" [ngClass]="{'slider-nav-selected': visible == 5}"></div>
+        <div (click)="visible = 6; interval()" [ngClass]="{'slider-nav-selected': visible == 6}"></div>
+    </div>
+</div>

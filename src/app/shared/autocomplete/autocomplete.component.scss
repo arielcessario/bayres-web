@@ -1,0 +1,43 @@
+@import '../../app.component.scss';
+.autocomplete {
+  position: absolute !important;
+  //width: 100%;
+  //top: 0;
+  z-index: 1000;
+  max-height: 200px;
+
+
+  top:0;
+  left: 0;
+  right: 0;
+  @include breakpoint('medium') {
+    top: 5px;
+  }
+
+  .autocomplete-container{
+
+    background-color: black;
+    color:white;
+    max-height: 200px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    @include shadow(3, black);
+    div{
+      margin: 0;
+    }
+    span{
+      margin: 5px;
+    }
+
+
+  }
+
+  .autocomplete-row{
+    min-height: 2em;
+    cursor: pointer;
+  }
+
+  .autocomplete-seleccionado{
+    background-color: silver;
+  }
+}

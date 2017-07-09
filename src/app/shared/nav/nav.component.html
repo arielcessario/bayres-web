@@ -1,0 +1,233 @@
+<div class="nav-container">
+
+    <div id="nav-desktop">
+        <div class="nav-logo" (click)="goTo('principal')">
+            <img src="http://bayresnoproblem.com.ar/images/nueva/logo_top.png" alt="BayresNoProblem">
+        </div>
+        <div id="nav-controls">
+            <div id="nav-controls-upper">
+                <div id="nav-usuario" (mouseover)="visibility = 'true'" (mouseleave)="visibility='false'" *ngIf="loged">
+                    <div id="nav-usuario-nombre">
+                        <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                        <span style="white-space: pre">Hola {{nombre}}!</span>
+                    </div>
+
+                    <div id="nav-usuario-menu" [@visibility]="visibility">
+                        <div>
+                            <i class="fa fa-cog" aria-hidden="true"></i>
+                            <span (click)="goTo('usuario')">Mi Cuenta</span>
+                        </div>
+                        <div>
+                            <i class="fa fa-th-list" aria-hidden="true"></i>
+                            <span (click)="goTo('pedidos')">Mis Pedidos</span>
+                        </div>
+                        <div>
+                            <i class="fa fa-heart" aria-hidden="true"></i>
+                            <span (click)="goTo('misDeseos')">Lista de Deseos</span>
+                        </div>
+                        <div>
+                            <i class="fa fa-power-off" aria-hidden="true"></i>
+                            <span (click)="logOut()">Salir</span>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="!loged" id="nav-logged-out">
+                    <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                    <div style="white-space: pre" id="nav-login" (click)="login()">Ingresar o Registrarse</div>
+                </div>
+                <span class="nav-link" (click)="goTo('contacto')">Contacto</span>
+                <div class="nav-sucursales" (mouseover)="visibilitySucursales = 'true'"
+                     (mouseleave)="visibilitySucursales='false'">
+                    <span>Sucursales</span>
+                    <div id="nav-sucursales-details" [@visibilitySucursales]="visibilitySucursales">
+
+                        <div class="nav-sucursal">
+                            <div class="nav-sucursal-fijo">
+                                <h4>15-3041-2252 - Independencia 4067</h4>
+                            </div>
+                            <div class="nav-sucursal-fade">
+                                <h2>Sucursal ALMAGRO</h2>
+                            </div>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d11045.743515169763!2d-58.41203394036921!3d-34.606204769153685!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xa4dd9b11d92fe701!2sBayres+No+Problem!5e0!3m2!1sen!2sar!4v1497046985116"
+                                    height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+                        </div>
+                        <div class="nav-sucursal">
+                            <div class="nav-sucursal-fijo">
+                                <h4>15-6676-2685 - Rivadavia 7055 local 73</h4>
+                            </div>
+                            <div class="nav-sucursal-fade">
+                                <h2>Sucursal FLORES</h2>
+                            </div>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15618.270290166423!2d-58.45100457494737!3d-34.62092630842793!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x91c5ad0365b166a!2sBayres+No+Problem!5e0!3m2!1sen!2sar!4v1497047030470"
+                                    height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+                        </div>
+                        <div class="nav-sucursal">
+                            <div class="nav-sucursal-fijo">
+                                <h4>15-3049-8691 - Catelli 90 5to H</h4>
+                            </div>
+                            <div class="nav-sucursal-fade">
+                                <h2>Sucursal ONCE</h2>
+                            </div>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6566.526921839241!2d-58.42857262510506!3d-34.62278188640707!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x60ff6056397dc439!2sBayres+No+Problem!5e0!3m2!1sen!2sar!4v1497047069817"
+                                    height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+                        </div>
+                        <div class="nav-sucursal">
+                            <div class="nav-sucursal-fijo">
+                                <h4>15-6676-2716 - Rivadavia 11450 local 13</h4>
+                            </div>
+                            <div class="nav-sucursal-fade">
+                                <h2>Sucursal LINIERS</h2>
+                            </div>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d13130.470816072364!2d-58.525878!3d-34.6391!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x823d1781b1d0098e!2sBayres+No+Problem!5e0!3m2!1ses!2sus!4v1497047559257"
+                                    height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+                        </div>
+
+                        <div id="nav-sucursal-footer">
+                            <i class="fa fa-caret-down" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+                <div id="nav-spacer"></div>
+                <!--<select name="categorias" id="nav-categorias" #categoria>-->
+                <!--<option value="-1">Selecciona una categoría</option>-->
+                <!--<ng-container *ngFor="let item of categorias">-->
+                <!--<option class="main-categoria" style="font-weight: bolder" [value]="item.id">-->
+                <!--{{item.nombre}}-->
+                <!--</option>-->
+                <!--<option *ngFor="let el of item.elems" [value]="el.id">-->
+                <!--{{el.nombre}}-->
+                <!--</option>-->
+                <!--</ng-container>-->
+                <!--</select>-->
+
+
+                <span class="nav-link" (click)="goTo('productos')"
+                      style="white-space: nowrap;">Todos los Productos</span>
+                <div id="nav-categorias" (mouseover)="visibilityCategorias = 'true'"
+                     (mouseleave)="visibilityCategorias='false'">
+                    <span [ngClass]="{'nav-categoria-selected': categoria_caption!='Categorías'}">{{categoria_caption}}</span>
+                    <div id="nav-categorias-details" [@visibilityCategorias]="visibilityCategorias">
+                        <div *ngFor="let item of categorias" class="nav-categorias-column">
+                            <span class="nav-categorias-title">{{item.nombre}} {{ ((item.total == 0)?'': '(' + item.total + ')') }}</span>
+                            <span class="nav-categorias-item" *ngFor="let el of item.elems"
+                                  (click)="changeCategoria(el);">{{el.nombre}} {{ ((el.total == 0)?'': '(' + el.total + ')') }}</span>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+            <div id="nav-controls-lower" style="position: relative">
+                <i class="fa fa-search" aria-hidden="true" (click)="changeCategoria(categoria.value);"></i>
+                <input type="text"
+                       autocomplete-component
+                       [autocompleteSearchBy]="'nombre'"
+                       [autocompleteToSelect]="'nombre'"
+                       [autocompleteToShow]="['nombre']"
+                       [autocompleteKey]="['producto_id']"
+                       [autocompleteModel]='filterSearch'
+                       (selectedId)="getId($event)"
+                       [(ngModel)]="filterSearch"
+                       (ngModelChange)="changeModel()"
+                       placeholder="Buscar..."/>
+            </div>
+        </div>
+        <div class="nav-cart" (click)="goTo('carrito')" style="cursor: pointer;">
+            <div class="nav-cart-image">
+                <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                <span id="nav-cart-cantidad">{{cantidad}}</span>
+            </div>
+            <div class="nav-cart-total">
+                <label for="">Subtotal:</label>
+                <span class="nav-cart-valor">{{total | currency:'USD':true }}</span>
+
+            </div>
+        </div>
+    </div>
+    <div id="nav-numeros">
+        Llamanos: Almagro - 15-3041-2252 / Flores - 15-3041-2252 / Once - 15-3041-2252 / Liniers - 15-6676-2716
+    </div>
+
+
+</div>
+
+<div class="nav-mobile">
+    <div class="nav-mobile-top">
+        <div class="nav-logo" (click)="goTo('principal')">
+            <img src="http://bayresnoproblem.com.ar/images/nueva/logo_top.png" alt="BayresNoProblem">
+        </div>
+        <div class="nav-action-bar">
+            <div class="nav-action-user" *ngIf="loged">
+                <div id="nav-usuario-nombre">
+                    <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                    <span style="white-space: pre">Hola {{nombre}}!</span>
+                </div>
+                <!--<div (click)="logOut()" style="margin-right: 10px;">-->
+                <!--<i class="fa fa-power-off" aria-hidden="true"></i>-->
+                <!--</div>-->
+            </div>
+            <div *ngIf="!loged" id="nav-logged-out">
+                <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                <div style="white-space: pre" id="nav-login" (click)="login()">Ingresar o Registrarse</div>
+            </div>
+            <div class="nav-icons">
+                <div class="nav-icon">
+                    <i class="fa fa-list" aria-hidden="true"></i>
+                    <span>Productos</span>
+                </div>
+                <div class="nav-icon">
+                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                    <span>Contacto</span>
+                </div>
+                <div class="nav-icon">
+                    <i class="fa fa-map-marker" aria-hidden="true"></i>
+                    <span>Sucursales</span>
+                </div>
+                <div class="nav-icon" id="nav-categorias" (click)="visibilityCategorias = !visibilityCategorias">
+                    <i class="fa fa-rebel" aria-hidden="true"></i>
+                    <span [ngClass]="{'nav-categoria-selected': categoria_caption!='Categorías'}">{{categoria_caption}}</span>
+                    <div id="nav-categorias-details" [@visibilityCategorias]="visibilityCategorias">
+                        <div id="nav-categorias-scroll">
+
+                            <div *ngFor="let item of categorias" class="nav-categorias-column">
+                                <span class="nav-categorias-title">{{item.nombre}} {{ ((item.total == 0)?'': '(' + item.total + ')') }}</span>
+                                <span class="nav-categorias-item" *ngFor="let el of item.elems"
+                                      (click)="changeCategoria(el);">{{el.nombre}} {{ ((el.total == 0)?'': '(' + el.total + ')') }}</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="nav-mobile-bottom">
+        <i class="fa fa-search" aria-hidden="true" (click)="changeCategoria(categoria.value);"></i>
+        <input type="text"
+               autocomplete-component
+               [autocompleteSearchBy]="'nombre'"
+               [autocompleteToSelect]="'nombre'"
+               [autocompleteToShow]="['nombre']"
+               [autocompleteKey]="['producto_id']"
+               [autocompleteModel]='filterSearch'
+               (selectedId)="getId($event)"
+               [(ngModel)]="filterSearch"
+               (ngModelChange)="changeModel()"
+               placeholder="Buscar..."/>
+    </div>
+
+
+    <div class="nav-cart" (click)="goTo('carrito')" style="cursor: pointer;">
+        <div class="nav-cart-image">
+            <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+            <span class="nav-cart-cantidad">{{cantidad}}</span>
+        </div>
+        <div class="nav-cart-total">
+            <span class="nav-cart-valor">{{total | currency:'USD':true }}</span>
+
+        </div>
+    </div>
+
+
+</div>
+

@@ -1,0 +1,27 @@
+<div class="producto-item">
+    <div class="producto-item-top" (click)="goTo(item['producto_id'])" title="{{item.nombre}}">
+        <div class="producto-titulo-container">
+            <span class="producto-titulo" title="{{item.nombre}}">{{item.nombre | descLength:25}}</span>
+        </div>
+        <div class="producto-item-img-container">
+            <img class="producto-item-img" [src]="'http://bayresnoproblem.com.ar/images/'+item.fotos[0].nombre"
+                 alt="{{item.nombre}}">
+            <span class="oferta" *ngIf="item.en_slider == 1">OFERTA</span>
+            <i class="fa fa-shopping-cart" *ngIf="item.en_carrito" aria-hidden="true" title="En Carrito"></i>
+            <!--<span class="destacado" *ngIf="item.destacado == 1">OFERTA</span>-->
+        </div>
+
+    </div>
+
+    <div class="producto-item-bottom">
+
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+        <i class="fa fa-heart" [ngClass]="{'deseado': item.deseado}" aria-hidden="true"
+           (click)="desear(item)"></i>
+        <i class="fa fa-search" aria-hidden="true" (click)="goTo(item['producto_id'])"></i>
+
+        <span class="producto-item-precio">{{((item.precios[0] == undefined)? 0.0:item.precios[0].precio) | currency:'USD':true}}</span>
+
+    </div>
+</div>
+

@@ -1,0 +1,22 @@
+<div class="autocomplete-main-container" #tpl class="autocomplete">
+    <div style="height: 0; width: 0; overflow: hidden;">
+        <input type="text" #hiddenAutocomplete>
+    </div>
+    <div *ngIf="visible" class="autocomplete-container">
+        <!--<div *ngIf="visible" class="autocomplete-container">-->
+        <!--<i class="fa fa-times" style="position: absolute; top: 10px; right: 20px" *ngIf="response.length > 0"-->
+        <!--aria-hidden="true"></i>-->
+        <div *ngFor="let item of response; let i = index"
+             class="autocomplete-row"
+             [ngClass]="{'autocomplete-seleccionado': i == indexSelected - 1}"
+             (click)="select(i)"
+             (mouseover)="over(i+1)"
+             (keydown)="select(i)"
+             (blur)="leave($event)">
+        <span *ngFor="let key of autocompleteToShow; let x = index"
+              (click)="select(i)">
+          {{item[key]}}
+        </span>
+        </div>
+    </div>
+</div>

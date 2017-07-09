@@ -1,0 +1,63 @@
+<div id="usuario-main">
+    <div id="usuario-title">
+        <h1>MI CUENTA</h1>
+        <i class="fa fa-home" aria-hidden="true" style="cursor: pointer" (click)="goTo('principal')"></i>
+    </div>
+    <div class="usuario-items-title">
+        <span>MIS DATOS</span>
+    </div>
+    <form [formGroup]="formUsuario" novalidate id="usuario-items">
+        <div class="form-group usuario-item">
+            <label for="">Mail</label>
+            <input type="text" class="form-control" formControlName="mail">
+            <small class="text-danger">
+                {{formErrors['mail']}}
+            </small>
+        </div>
+        <div class="form-group usuario-item">
+            <label for="">Password</label>
+            <input type="text" class="form-control" formControlName="password">
+            <small class="text-danger">
+                {{formErrors['password']}}
+            </small>
+        </div>
+        <div class="form-group usuario-item">
+            <label for="">Nombre</label>
+            <input type="text" class="form-control" formControlName="nombre">
+            <small class="text-danger">
+                {{formErrors['nombre']}}
+            </small>
+        </div>
+        <div class="form-group usuario-item">
+            <label for="">Apellido</label>
+            <input type="text" class="form-control" formControlName="apellido">
+        </div>
+        <div class="form-group usuario-item">
+            <label for="">Calle</label>
+            <input type="text" class="form-control" formControlName="calle">
+
+        </div>
+        <div class="form-group usuario-item">
+            <label for="">Número</label>
+            <input type="text" class="form-control" formControlName="nro">
+        </div>
+
+        <div class="form-group usuario-item">
+
+            <label for="">Provincia</label>
+            <select name="" id="envio" formControlName="provincia_id">
+                <option *ngFor="let item of provincias" [value]="item.id">
+                    {{item.name}}
+                </option>
+            </select>
+        </div>
+    </form>
+    <div id="usuario-disclaimer">
+        <span>Los envíos se realizan por medio de cadeteria, correo, empresa de transportes, según destino. El costo del mismo es a cargo del comprado, previo coordinación con el vendedor.</span>
+        <span>Recuerde que una vez realizado el pedido, usted recibirá un mail de confirmación. Luego de este mail, una persona de Bayres se pondrá en contacto para coordinar el envío.</span>
+    </div>
+    <div id="usuario-buttons">
+
+        <button (click)="confirmar()">Actualizar mis datos</button>
+    </div>
+</div>

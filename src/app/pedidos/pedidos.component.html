@@ -1,0 +1,52 @@
+<div id="pedido-main" style="width: 100%">
+    <div id="pedido-title">
+        <h1>MIS PEDIDOS</h1>
+        <i class="fa fa-home" aria-hidden="true" style="cursor: pointer" (click)="goTo('principal')"></i>
+    </div>
+    <div class="pedido-items-title">
+        <span>FECHA</span>
+        <span>NRO.</span>
+        <span>ESTADO</span>
+        <span>VALOR</span>
+    </div>
+    <div id="pedido-items">
+        <div class="pedido-item" *ngFor="let item of items">
+            <div class="pedido-item-body"
+                 (click)="selected = (selected == 0 || selected !== item.carrito_id)?item.carrito_id:0">
+                <div>{{item.fecha}}</div>
+                <div>{{item.carrito_id}}</div>
+                <div>{{getStatusText(item.status)}}</div>
+                <div>{{item.total | currency:'USD':true}}</div>
+            </div>
+            <div class="pedido-item-detalle" [ngClass]="{'pedido-item-detalle-visible': selected == item.carrito_id}">
+                <div *ngFor="let det of item.productos" class="pedido-item-detalle-item">
+                    <span>{{det.nombre}}</span>
+                    <span>{{det.cantidad}} x {{det.precio_unitario | currency:'USD':true}}</span>
+                </div>
+            </div>
+            <!--<div class="pedido-item-body">-->
+            <!--<div id="pedido-item-left">-->
+            <!--<img [src]="'http://bayresnoproblem.com.ar/images/'+item.fotos[0].nombre" alt="">-->
+            <!--</div>-->
+            <!--<div id="pedido-item-center">-->
+            <!--<div id="pedido-item-center-top"><span class="pedido-item-nombre">{{item.nombre}}</span></div>-->
+            <!--<div id="pedido-item-center-bottom">-->
+            <!--<i class="fa fa-share-alt" aria-hidden="true"></i>-->
+            <!--<i class="fa fa-heart" [ngClass]="{'deseado': item.deseado}" aria-hidden="true"-->
+            <!--(click)="desear(item)"></i>-->
+            <!--<i class="fa fa-search" aria-hidden="true"-->
+            <!--(click)="goTo('producto/' + item['producto_id'])"></i>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div id="pedido-item-rigth">-->
+
+            <!--<i class="fa fa-trash" aria-hidden="true" (click)="update(item)"></i>-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<span class="pedido-item-valor">{{item.precios[0].precio | currency:'USD':true}}</span>-->
+            <!--<input type="number" step="1" [(ngModel)]="item.cantidad" (change)="coreService.updatePedido(item)">-->
+            <!--<span class="pedido-item-total">{{item.cantidad * item.precios[0].precio | currency:'USD':true}}</span>-->
+        </div>
+    </div>
+</div>
+

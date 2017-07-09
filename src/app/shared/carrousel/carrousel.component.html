@@ -1,0 +1,14 @@
+<div id="carrousel-container">
+
+    <div id="carrousel-left" (click)="left()">
+        <i class="fa fa-caret-left" aria-hidden="true" style="font-size: 50px"></i>
+    </div>
+    <div id="carrousel-items" #list>
+        <div class="producto-item " *ngFor="let item of data">
+            <producto-component [item]="item"></producto-component>
+        </div>
+    </div>
+    <div id="carrousel-right" (click)="right()">
+        <i class="fa fa-caret-right" aria-hidden="true" style="font-size: 50px"></i>
+    </div>
+</div>

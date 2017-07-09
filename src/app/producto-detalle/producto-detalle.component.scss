@@ -1,0 +1,204 @@
+@import '../app.component.scss';
+
+:host {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: $nav-height;
+
+  background: -webkit-linear-gradient(top, #466946, #d2f373, #466946);
+  background: linear-gradient(to bottom, #466946, #d2f373, #466946);
+  #producto-detalle-main {
+    max-width: $max-width;
+    width: 100%;
+    min-height: 350px;
+    display: flex;
+    flex-direction: row;
+
+    #producto-detalle-text {
+      max-width: 100%;
+      width: 100%;
+      padding: 10px;
+      height: 350px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      #producto-detalle-descripcion {
+        max-height: 100%;
+        font-weight: 700;
+        overflow-y: auto;
+      }
+
+      .producto-detalle-details {
+        margin: 5px 0 5px 0;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        font-weight: 700;
+      }
+
+      #producto-detalle-cantidad {
+        input {
+          width: 60px;
+        }
+
+        input[type=number]::-webkit-inner-spin-button {
+          opacity: 1;
+        }
+      }
+
+      .h-line {
+        width: 100%;
+        border-bottom: 1px solid gray;
+        padding: 5px 0 5px 0;
+      }
+
+      #producto-detalle-total {
+        font-size: 30px;
+        font-weight: 700;
+      }
+
+      #producto-detalle-en-carrito {
+        background-color: $accent-1;
+        color: white;
+      }
+
+      #producto-detalle-button {
+        padding: 10px 30px 10px 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+
+        #producto-detalle-add,
+        #producto-detalle-remove {
+          border: solid 0;
+          cursor: pointer;
+          font-weight: 700;
+          color: white;
+          padding: 10px 30px 10px 10px;
+          font-size: 25px;
+          position: relative;
+          @include border-radius-separate(10px, 0px, 0px, 10px);
+          @include shadow(1, black);
+          @include transition(0.3s);
+          &:hover{
+            @include shadow(2, black);
+            @include transform(translate(2px, 2px));
+          }
+
+          i {
+            background-color: white;
+            font-size: 45px;
+            @include border-radius-separate(30px, 30px, 30px, 30px);
+            padding: 2px 4px 2px 4px;
+            position: absolute;
+            right: -30px;
+            top: -2px;
+            @include shadow(1, black);
+          }
+        }
+
+        #producto-detalle-add {
+          background-color: #222e23;
+          i {
+            border: 3px solid $accent-2;
+            color: $accent-2;
+          }
+        }
+
+        #producto-detalle-remove {
+          background-color: $accent-1;
+          i {
+            border: 3px solid $accent-1;
+            color: $accent-1;
+          }
+        }
+
+      }
+
+    }
+
+    #producto-detalle-images {
+
+      min-width: 50%;
+      height: 100%;
+      max-height: 400px;
+      min-height: 350px;
+      position: relative;
+      #slider-01,
+      #slider-02,
+      #slider-03,
+      #slider-04 {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        //resize: both;
+        overflow: hidden;
+
+      }
+
+      img {
+        object-fit: cover;
+        height: 100%;
+        width: 100%;
+        //object-position: 100% 100%;
+      }
+
+      .slider-nav-selected {
+        background-color: rgba(255, 255, 255, 1) !important;
+      }
+
+      #producto-detalle-actions {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        position: absolute;
+        z-index: 101;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.4);
+
+        #producto-detalle-social {
+          i {
+            margin: 0 5px 0 5px;
+            color: white;
+            cursor: pointer;
+          }
+
+          @for $i from 0 through 4 {
+            i:nth-child(#{$i}) {
+              right: #{($i - 1) * 40}px;
+            }
+          }
+
+        }
+
+        #producto-detalle-nav {
+          bottom: 10px;
+          left: 0;
+          right: 0;
+          width: 30%;
+          height: 30px;
+          display: flex;
+          flex-direction: row;
+          justify-content: space-between;
+          max-width: 30%;
+          div {
+            margin: 5px;
+            height: 20px;
+            width: 20px;
+            border: 1px solid white;
+            background-color: rgba(255, 255, 255, 0);
+            -webkit-border-radius: 20px;
+            -moz-border-radius: 20px;
+            border-radius: 20px;
+          }
+
+        }
+      }
+    }
+  }
+}

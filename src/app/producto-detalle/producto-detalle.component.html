@@ -1,0 +1,62 @@
+<h1>{{data.nombre}}</h1>
+<div id="producto-detalle-main" *ngIf="data.fotos">
+    <div id="producto-detalle-images">
+        <div id="slider-01" *ngIf="visible == 1">
+            <img [src]="'http://bayresnoproblem.com.ar/images/'+data.fotos[0].nombre" alt="{{data.fotos[0].nombre}}">
+        </div>
+        <div id="slider-02" *ngIf="visible == 2 && data.fotos[1].nombre != ''">
+            <img [src]="'http://bayresnoproblem.com.ar/images/'+data.fotos[1].nombre" alt="{{data.fotos[1].nombre}}">
+        </div>
+        <div id="slider-03" *ngIf="visible == 3 && data.fotos[2].nombre != ''">
+            <img [src]="'http://bayresnoproblem.com.ar/images/'+data.fotos[2].nombre" alt="{{data.fotos[2].nombre}}">
+        </div>
+        <div id="slider-04" *ngIf="visible == 4 && data.fotos[3].nombre != ''">
+            <img [src]="'http://bayresnoproblem.com.ar/images/'+data.fotos[3].nombre" alt="{{data.fotos[3].nombre}}">
+        </div>
+
+        <div id="producto-detalle-actions">
+            <div id="producto-detalle-nav">
+                <div (click)="visible = 1; interval()" [ngClass]="{'slider-nav-selected': visible == 1}"></div>
+                <div (click)="visible = 2; interval()" [ngClass]="{'slider-nav-selected': visible == 2}"
+                     *ngIf="data.fotos[1].nombre != ''"></div>
+                <div (click)="visible = 3; interval()" [ngClass]="{'slider-nav-selected': visible == 3}"
+                     *ngIf="data.fotos[2].nombre != ''"></div>
+                <div (click)="visible = 4; interval()" [ngClass]="{'slider-nav-selected': visible == 4}"
+                     *ngIf="data.fotos[3].nombre != ''"></div>
+            </div>
+            <div id="producto-detalle-social">
+                <i class="fa fa-share-alt" aria-hidden="true"></i>
+                <i class="fa fa-heart" aria-hidden="true" (click)="desear(data);"
+                   [ngClass]="{'deseado': data.deseado}"></i>
+            </div>
+        </div>
+    </div>
+    <div id="producto-detalle-text">
+        <div id="producto-detalle-descripcion"><span>{{data.descripcion }}</span></div>
+        <div class="h-line"></div>
+        <div id="producto-detalle-footer-container">
+            <div id="producto-detalle-precio" class="producto-detalle-details">
+                <span>Precio Unitario:</span><span>{{data.precios[0].precio | currency:'USD':true}}</span></div>
+            <div id="producto-detalle-cantidad" class="producto-detalle-details">
+                <span>Cantidad:</span><input type="number" step="1" [(ngModel)]="data.cantidad"
+                                             (change)="changeCantidad()">
+            </div>
+            <div class="h-line"></div>
+            <div id="producto-detalle-total" class="producto-detalle-details">
+                <span>Total:</span><span>{{data.precios[0].precio * data.cantidad | currency:'USD':true}}</span>
+            </div>
+            <div id="producto-detalle-button">
+                <button (click)="update()" id="producto-detalle-add" *ngIf="!data.en_carrito">Agregalo al carrito
+                    <i class="fa fa-cart-plus" aria-hidden="true"></i>
+                </button>
+                <button (click)="update()" id="producto-detalle-remove" *ngIf="data.en_carrito">Sacar del carrito
+                    <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+<h1>Mejor Compralos juntos</h1>
+<carrousel-component></carrousel-component>

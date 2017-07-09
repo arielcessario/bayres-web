@@ -1,0 +1,23 @@
+<div class="principal-container" style="height: 100%;">
+
+    <slider-component></slider-component>
+    <div style="margin-top: 100px; background-color: white; flex-direction: column; display: flex; justify-content: center; align-items: center;">
+    <span class="principal-disclaimer">Venta online solo para mayores de 18 años <a
+            href="http://www.google.com">(Salir)</a></span>
+        <img src="http://localhost:80/bayres-web/src/app/images/logo-distribuidor.png" alt=""
+             style="width: 100%; max-width: 400px; min-width: 310px; margin-top: 20px; margin-bottom: 20px;">
+    </div>
+
+    <div class="principal-main">
+        <h1 class="principal-section-title">LO NUEVO</h1>
+        <carrousel-component [data]="en_oferta"></carrousel-component>
+        <h1 class="principal-section-title">EN OFERTA</h1>
+        <carrousel-component [data]="en_oferta"></carrousel-component>
+        <h1 class="principal-section-title">DESTACADOS</h1>
+        <carrousel-component [data]="destacado"></carrousel-component>
+        <h1 class="principal-section-title">MIS DESEOS</h1>
+        <carrousel-component [data]="deseado"></carrousel-component>
+    </div>
+</div>
+
+

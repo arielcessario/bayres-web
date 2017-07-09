@@ -1,0 +1,145 @@
+<div id="login-container">
+    <div class="logmod">
+        <div class="logmod__wrapper">
+            <span class="logmod__close" (click)="close()">Close</span>
+            <button (click)="logout()">Salir</button>
+            <button (click)="signIn('google')">Google</button>
+            <div class="logmod__container">
+                <ul class="logmod__tabs">
+                    <li data-tabtar="lgm-2" [ngClass]="{'current':current == 1}">
+                        <div href="" (click)="current =1">Ingresar</div>
+                    </li>
+                    <li data-tabtar="lgm-1" [ngClass]="{'current':current == 0}">
+                        <div href="" (click)="current =0">Nuevo Usuario</div>
+                    </li>
+                </ul>
+                <div class="logmod__tab-wrapper">
+                    <div class="logmod__tab lgm-1" [ngClass]="{'show':current == 0}">
+                        <div class="logmod__heading">
+                            <span class="logmod__heading-subtitle">Complete sus datos personales para <strong>crear su cuenta</strong></span>
+                        </div>
+                        <div class="logmod__form">
+                            <form [formGroup]="formCreateUsuario"
+                                  novalidate (ngSubmit)="create()"
+                                  accept-charset="utf-8" action="#" class="simform">
+                                <div class="sminputs">
+                                    <div class="input string full">
+                                        <label class="string full" for="user-pw"
+                                               [ngClass]="{'text-error': formErrorsCreate['nombre']}">Nombre * {{formErrorsCreate['nombre']}}</label>
+                                        <input class="string full" maxlength="255" id="user-pw" formControlName="nombre"
+                                               placeholder="Nombre" type="text" size="50"/>
+
+                                    </div>
+                                </div>
+                                <div class="sminputs">
+                                    <div class="input full">
+                                        <label class="string full" for="user-name"
+                                               [ngClass]="{'text-error': formErrorsCreate['mail']}">Email* {{formErrorsCreate['mail']}}</label>
+                                        <input class="string full" maxlength="255" id="user-email" formControlName="mail"
+                                               placeholder="Email" type="email" size="50"/>
+
+                                    </div>
+                                </div>
+                                <div class="sminputs">
+                                    <div class="input full">
+                                        <label class="string full" for="user-pw"
+                                               [ngClass]="{'text-error': formErrorsCreate['password']}">Password * {{formErrorsCreate['password']}}</label>
+                                        <input class="string full" maxlength="255" id="user-pw" formControlName="password"
+                                               placeholder="Password" type="text" size="50"/>
+
+                                    </div>
+                                </div>
+                                <div class="simform__actions">
+                                    <input class="sumbit" name="commit" type="submit" value="Crear Cuenta"/>
+                                    <span class="simform__actions-sidetext">Al aceptar, da por conocidos y aceptados nuestros <a
+                                            class="special" href="#" target="_blank"
+                                            role="link">Terminos y Condiciones</a></span>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="logmod__alter">
+                            <div class="logmod__alter-container">
+                                <div (click)="signIn('facebook')" class="connect facebook">
+                                    <div class="connect__icon">
+                                        <i class="fa fa-facebook"></i>
+                                    </div>
+                                    <div class="connect__context">
+                                        <span>Crear cuenta con <strong>Facebook</strong></span>
+                                    </div>
+                                </div>
+
+                                <div (click)="signIn('google')"  class="connect googleplus">
+                                    <div class="connect__icon">
+                                        <i class="fa fa-google-plus"></i>
+                                    </div>
+                                    <div class="connect__context">
+                                        <span>Crear cuenta con <strong>Google</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="logmod__tab lgm-2" [ngClass]="{'show':current == 1}">
+                        <div class="logmod__heading">
+                            <span class="logmod__heading-subtitle">Ingrese su email y password <strong>para ingresar</strong></span>
+                        </div>
+                        <div class="logmod__form">
+                            <form [formGroup]="formLogin"
+                                  novalidate (ngSubmit)="fnLogin()"
+                                  accept-charset="utf-8" action="#" class="simform">
+                                <div class="sminputs">
+                                    <div class="input full">
+                                        <label class="string optional" for="user-name"
+                                               [ngClass]="{'text-error': formErrorsLogin['mail']}">Email*
+                                            {{formErrorsLogin['mail']}}</label>
+                                        <input class="string optional" maxlength="255" id="user-email"
+                                               placeholder="Email" type="email" size="50" formControlName="mail"/>
+                                    </div>
+                                </div>
+                                <div class="sminputs">
+                                    <div class="input full">
+                                        <label class="string optional" for="user-pw"
+                                               [ngClass]="{'text-error': formErrorsLogin['password']}">Password *
+                                            {{formErrorsLogin['password']}}</label>
+                                        <input class="string optional" maxlength="255" id="user-pw"
+                                               placeholder="Password" type="password" size="50" #pwSignIn
+                                               formControlName="password"/>
+
+                                        <span class="hide-password" (click)="show();">Show</span>
+
+                                    </div>
+                                </div>
+                                <div class="simform__actions">
+                                    <input class="sumbit" name="commit" type="submit" value="Log In"/>
+                                    <span class="simform__actions-sidetext"><a class="special" role="link" href="#">Forgot your password?<br>Click here</a></span>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="logmod__alter">
+                            <div class="logmod__alter-container">
+                                <div (click)="signIn('facebook')"  href="#" class="connect facebook">
+                                    <div class="connect__icon">
+                                        <i class="fa fa-facebook"></i>
+                                    </div>
+                                    <div class="connect__context">
+                                        <span>Ingresar con <strong>Facebook</strong></span>
+                                    </div>
+                                </div>
+                                <div (click)="signIn('google')"  href="#" class="connect googleplus">
+                                    <div class="connect__icon">
+                                        <i class="fa fa-google-plus"></i>
+                                    </div>
+                                    <div class="connect__context">
+                                        <span>Ingresar con <strong>Google+</strong></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

@@ -1,0 +1,128 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the button component.
+// -----------------------------------------------------------------------------
+@import '../../app.component.scss';
+$slider-height: 600px;
+
+:host {
+  position: relative;
+  top: $nav-height;
+  height: $slider-height;
+  #slider-container{
+    height: $slider-height;
+    position: relative;
+  }
+
+  #slider-nav {
+    position: absolute;
+    z-index: 10;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    bottom: 20px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 30px;
+    div {
+      margin: 5px;
+      height: 20px;
+      width: 20px;
+      border: 2px solid white;
+      background-color: rgba(255, 255, 255, 0);
+      -webkit-border-radius: 30px;
+      -moz-border-radius: 30px;
+      border-radius: 30px;
+      @include shadow(1, black);
+    }
+    .slider-nav-selected {
+      background-color: rgba(255, 255, 255, 1) !important;
+    }
+  }
+
+  #slider-container {
+    width: 100%;
+    height: 100%;
+    max-height: $slider-height;
+  }
+
+  #slider-carrousel {
+    width: 100%;
+    height: 100%;
+    max-height: $slider-height;
+    position: relative;
+    #slider-01,
+    #slider-02,
+    #slider-03,
+    #slider-04,
+    #slider-05,
+    #slider-06
+    {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      //resize: both;
+      overflow: hidden;
+
+    }
+    img {
+      object-fit: cover;
+      height: 100%;
+      width: 100%;
+      //object-position: 100% 100%;
+    }
+    .slider-descr {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 30%;
+      max-height: 300px;
+      height:300px;
+      display: flex;
+      flex-direction: column;
+      background-color: rgba(#d4f574, 0.8);
+      h1{
+        font-size: 40px;
+        font-weight: 700;
+        margin: 10px 0 10px 0;
+      }
+
+      h2{
+        font-size: 30px;
+        font-weight: 700;
+        margin: 10px 0 10px 0;
+      }
+
+      h1, span, h2{
+        width: 100%;
+        text-align: center;
+        color: black;
+      }
+
+      .slider-descr-actions{
+        background-color: black;
+        font-size: 20px;
+        color: white;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        i{
+          margin: 10px;
+          cursor: pointer;
+        }
+      }
+      span {
+        font-weight: bold;
+        font-size: 16px;
+        max-width: 50%;
+        margin: auto;
+      }
+    }
+
+  }
+}
+
+
+

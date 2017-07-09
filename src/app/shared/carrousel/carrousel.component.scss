@@ -1,0 +1,64 @@
+// -----------------------------------------------------------------------------
+// This file contains all styles related to the button component.
+// -----------------------------------------------------------------------------
+@import '../../app.component.scss';
+
+:host {
+  position: relative;
+  //top: $nav-height;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 20px 0 20px 0;
+  #carrousel-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    max-width: $max-width;
+  }
+
+  #carrousel-left, #carrousel-right{
+    font-size: 50px;
+    margin: 0 10px 0 10px;
+    cursor: pointer;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: solid 3px black;
+    border-bottom-width: 0;
+    border-top-width: 0;
+    i{
+      margin: 5px;
+
+      @include transition(0.1s);
+    }
+    &:hover{
+      i{
+        text-shadow: 0 6px 12px rgba(0, 0, 0, 0.43), 0 10px 40px rgba(0, 0, 0, 0.39);
+
+        @include transform(translate(3px,3px));
+        @include transform(translate(3px,3px));
+      }
+    }
+  }
+
+  #carrousel-left{
+    border-left-width: 0;
+  }
+  #carrousel-right{
+    border-right-width: 0;
+  }
+
+  #carrousel-items {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    max-width: $max-width;
+    overflow-y: hidden;
+    overflow-x: auto;
+
+  }
+
+}
