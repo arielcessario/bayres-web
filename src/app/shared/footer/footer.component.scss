@@ -1,0 +1,64 @@
+@import '../../app.component.scss';
+
+#footer-container {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: white;
+  .footer-legend {
+    text-align: center;
+    color: $accent-2;
+    background-color: black;
+  }
+
+  #footer-image {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+    img {
+      max-width: 360px;
+    }
+  }
+
+  #footer-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    @include breakpoint('medium') {
+      flex-direction: row;
+    }
+
+    .footer-links-group {
+      margin: 0 10px 0 10px;
+      text-align: center;
+      @include breakpoint('medium') {
+        text-align: left;
+      }
+
+    }
+
+  }
+
+  .footer-links-title {
+    font-size: 1.2em;
+    font-weight: 700;
+    .footer-link {
+      color: darkslategray;
+    }
+  }
+
+  #footer-copyright {
+    width: 100%;
+    text-align: center;
+    color: $accent-2;
+    background-color: black;
+    a {
+      font-size: 16px;
+    }
+
+  }
+}

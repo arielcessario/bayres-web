@@ -13,6 +13,7 @@ require_once './includes/mail/PHPMailerAutoload.php';
 require_once './sucursal/sucursal.php';
 require_once './producto/producto.php';
 require_once './usuario/usuario.php';
+require_once './mail/mail.php';
 
 try {
 

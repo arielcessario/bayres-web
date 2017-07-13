@@ -15,6 +15,7 @@ export class CoreService {
     public getLogOut: Subject<any> = new Subject<any>();
     public getCartStatus: Subject<any> = new Subject<any>();
     public getSearch: Subject<any> = new Subject<any>();
+    public getLoadingStatus: Subject<any> = new Subject<any>();
 
     private search: any = {};
     private total: number = 0.0;
@@ -44,6 +45,10 @@ export class CoreService {
 
     public logOut() {
         this.getLogOut.next();
+    }
+
+    public setLoadingStatus(show) {
+        this.getLoadingStatus.next({show: show});
     }
 
 
@@ -87,33 +92,32 @@ export class CoreService {
 
         if (Object.getOwnPropertyNames(carrito).length > 0) {
             this.calcularTotal();
+        } else {
+            this.total = 0;
+            this.cantidad = 0;
+            setTimeout(()=> {
+                this.refreshAll();
+            }, 0);
         }
 
     }
 
-    confirmar(origen, destino) {
+    clearCarrito() {
+        localStorage.setItem('carrito', JSON.stringify({}));
+        let items = this.filterProducts('en_carrito', 'true', 'true');
 
-        // for (var i in CarritoService.cart) {
-        //     CarritoService.cart[i]['precio_unitario'] = CarritoService.cart[i]['precios'][0]['precio'];
-        // }
-        //
-        // let pedido = {
-        //     total: CarritoService.vTotal,
-        //     usuario_id: 1,
-        //     origen: origen,
-        //     destino: destino,
-        //     detalles: CarritoService.cart
-        // };
-        //
-        //
-        // let obj = {
-        //     'function': 'createCarrito',
-        //     'carrito': pedido
-        // };
-        //
-        // return this.fireCache.rawExec(obj, 'producto');
+        for(var i in items){
+            delete items[i]['en_carrito'];
+            items[i]['cantidad'] = 1;
+        }
+
+
+        this.total = 0;
+        this.cantidad = 0;
+        setTimeout(()=> {
+            this.refreshAll();
+        }, 0);
     }
-
 
     calcularTotal() {
 
@@ -121,6 +125,7 @@ export class CoreService {
         if (localStorage.getItem('carrito')) {
             carrito = JSON.parse(localStorage.getItem('carrito'));
         }
+
 
         let total = 0;
         let productos = CacheService.get('productos', 'getProductos');

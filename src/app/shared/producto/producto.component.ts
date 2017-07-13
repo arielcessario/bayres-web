@@ -34,6 +34,21 @@ export class ProductoComponent implements OnInit {
         }, 0);
     }
 
+    update() {
+
+        if (!this.item.en_carrito && !this.item.cantidad) {
+            this.item.cantidad = 1;
+        }
+
+        if (this.item.en_carrito) {
+            delete this.item.en_carrito;
+        } else {
+            this.item.en_carrito = true;
+        }
+
+        this.coreService.updateCarrito(this.item);
+    }
+
     desear(item){
         if(item['deseado']){
             delete item['deseado'];

@@ -12,6 +12,7 @@ export class PrincipalComponent implements OnInit {
     destacado = [];
     nuevo = [];
     deseado = [];
+    loged = false;
 
     constructor(private coreService: CoreService) {
     }
@@ -20,6 +21,12 @@ export class PrincipalComponent implements OnInit {
         this.coreService.getProductos.subscribe(productos => {
             this.setUp(productos);
         });
+
+        this.loged = localStorage.getItem('currentUser') != null;
+
+        this.coreService.getLoginStatus.subscribe(()=> {
+            this.loged = localStorage.getItem('currentUser') != null;
+        })
     }
 
     setUp(productos) {

@@ -5,6 +5,9 @@
   align-items: center;
   flex-direction: column;
   margin-top: $nav-height;
+  @include breakpoint('medium') {
+    margin-top: $nav-height-desktop;
+  }
 
   background: -webkit-linear-gradient(top, #466946, #d2f373, #466946);
   background: linear-gradient(to bottom, #466946, #d2f373, #466946);
@@ -13,16 +16,25 @@
     width: 100%;
     min-height: 350px;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+
+    @include breakpoint('medium') {
+      flex-direction: row;
+
+    }
 
     #producto-detalle-text {
-      max-width: 100%;
+      max-width: calc(100% - 20px);
       width: 100%;
       padding: 10px;
       height: 350px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+
+      @include breakpoint('medium') {
+
+      }
 
       #producto-detalle-descripcion {
         max-height: 100%;

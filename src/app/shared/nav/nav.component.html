@@ -6,26 +6,26 @@
         </div>
         <div id="nav-controls">
             <div id="nav-controls-upper">
-                <div id="nav-usuario" (mouseover)="visibility = 'true'" (mouseleave)="visibility='false'" *ngIf="loged">
+                <div id="nav-usuario" (mouseover)="visibility = true" (mouseleave)="visibility=false" *ngIf="loged">
                     <div id="nav-usuario-nombre">
                         <i class="fa fa-user-circle-o" aria-hidden="true"></i>
                         <span style="white-space: pre">Hola {{nombre}}!</span>
                     </div>
 
                     <div id="nav-usuario-menu" [@visibility]="visibility">
-                        <div>
+                        <div (click)="visibility = false">
                             <i class="fa fa-cog" aria-hidden="true"></i>
                             <span (click)="goTo('usuario')">Mi Cuenta</span>
                         </div>
-                        <div>
+                        <div (click)="visibility = false">
                             <i class="fa fa-th-list" aria-hidden="true"></i>
                             <span (click)="goTo('pedidos')">Mis Pedidos</span>
                         </div>
-                        <div>
+                        <div (click)="visibility = false">
                             <i class="fa fa-heart" aria-hidden="true"></i>
                             <span (click)="goTo('misDeseos')">Lista de Deseos</span>
                         </div>
-                        <div>
+                        <div (click)="visibility = false">
                             <i class="fa fa-power-off" aria-hidden="true"></i>
                             <span (click)="logOut()">Salir</span>
                         </div>
@@ -36,8 +36,8 @@
                     <div style="white-space: pre" id="nav-login" (click)="login()">Ingresar o Registrarse</div>
                 </div>
                 <span class="nav-link" (click)="goTo('contacto')">Contacto</span>
-                <div class="nav-sucursales" (mouseover)="visibilitySucursales = 'true'"
-                     (mouseleave)="visibilitySucursales='false'">
+                <div class="nav-sucursales" (mouseover)="visibilitySucursales = true"
+                     (mouseleave)="visibilitySucursales=false">
                     <span>Sucursales</span>
                     <div id="nav-sucursales-details" [@visibilitySucursales]="visibilitySucursales">
 
@@ -103,13 +103,13 @@
 
                 <span class="nav-link" (click)="goTo('productos')"
                       style="white-space: nowrap;">Todos los Productos</span>
-                <div id="nav-categorias" (mouseover)="visibilityCategorias = 'true'"
-                     (mouseleave)="visibilityCategorias='false'">
+                <div id="nav-categorias" (mouseover)="visibilityCategorias = true"
+                     (mouseleave)="visibilityCategorias=false">
                     <span [ngClass]="{'nav-categoria-selected': categoria_caption!='Categorías'}">{{categoria_caption}}</span>
                     <div id="nav-categorias-details" [@visibilityCategorias]="visibilityCategorias">
                         <div *ngFor="let item of categorias" class="nav-categorias-column">
                             <span class="nav-categorias-title">{{item.nombre}} {{ ((item.total == 0)?'': '(' + item.total + ')') }}</span>
-                            <span class="nav-categorias-item" *ngFor="let el of item.elems"
+                            <span class="nav-categorias-item" *ngFor="let el of item.elems"  [ngClass]="{'nav-categoria-selected': categoria_caption==el.nombre}"
                                   (click)="changeCategoria(el);">{{el.nombre}} {{ ((el.total == 0)?'': '(' + el.total + ')') }}</span>
                         </div>
 
@@ -144,9 +144,9 @@
             </div>
         </div>
     </div>
-    <div id="nav-numeros">
-        Llamanos: Almagro - 15-3041-2252 / Flores - 15-3041-2252 / Once - 15-3041-2252 / Liniers - 15-6676-2716
-    </div>
+    <!--<div id="nav-numeros">-->
+        <!--Llamanos: Almagro - 15-3041-2252 / Flores - 15-6676-2685 / Once - 15-6676-2685 / Liniers - 15-6676-2716-->
+    <!--</div>-->
 
 
 </div>
@@ -157,7 +157,7 @@
             <img src="http://bayresnoproblem.com.ar/images/nueva/logo_top.png" alt="BayresNoProblem">
         </div>
         <div class="nav-action-bar">
-            <div class="nav-action-user" *ngIf="loged">
+            <div class="nav-action-user" *ngIf="loged" (click)="visibility = !visibility" (mouseleave)="visibility='false'">
                 <div id="nav-usuario-nombre">
                     <i class="fa fa-user-circle-o" aria-hidden="true"></i>
                     <span style="white-space: pre">Hola {{nombre}}!</span>
@@ -171,7 +171,7 @@
                 <div style="white-space: pre" id="nav-login" (click)="login()">Ingresar o Registrarse</div>
             </div>
             <div class="nav-icons">
-                <div class="nav-icon">
+                <div class="nav-icon" (click)="goTo('productos')">
                     <i class="fa fa-list" aria-hidden="true"></i>
                     <span>Productos</span>
                 </div>
@@ -179,19 +179,20 @@
                     <i class="fa fa-envelope" aria-hidden="true"></i>
                     <span>Contacto</span>
                 </div>
-                <div class="nav-icon">
+                <div class="nav-icon" (click)="visibilitySucursales = !visibilitySucursales"
+                     (mouseleave)="visibilitySucursales=false">
                     <i class="fa fa-map-marker" aria-hidden="true"></i>
                     <span>Sucursales</span>
                 </div>
-                <div class="nav-icon" id="nav-categorias" (click)="visibilityCategorias = !visibilityCategorias">
+                <div class="nav-icon" id="nav-categorias" (click)="visibilityCategorias = !visibilityCategorias" (mouseleave)="visibilityCategorias = false">
                     <i class="fa fa-rebel" aria-hidden="true"></i>
-                    <span [ngClass]="{'nav-categoria-selected': categoria_caption!='Categorías'}">{{categoria_caption}}</span>
+                    <span [ngClass]="{'nav-categoria-selected': categoria_caption!='Categorías'}">Categorías</span>
                     <div id="nav-categorias-details" [@visibilityCategorias]="visibilityCategorias">
                         <div id="nav-categorias-scroll">
-
+                            <span class="nav-categorias-column nav-categorias-item" (click)="changeCategoria({nombre:'Categorías', id:''});">Todas</span>
                             <div *ngFor="let item of categorias" class="nav-categorias-column">
                                 <span class="nav-categorias-title">{{item.nombre}} {{ ((item.total == 0)?'': '(' + item.total + ')') }}</span>
-                                <span class="nav-categorias-item" *ngFor="let el of item.elems"
+                                <span class="nav-categorias-item" *ngFor="let el of item.elems" [ngClass]="{'nav-categoria-selected': categoria_caption==el.nombre}"
                                       (click)="changeCategoria(el);">{{el.nombre}} {{ ((el.total == 0)?'': '(' + el.total + ')') }}</span>
                             </div>
                         </div>

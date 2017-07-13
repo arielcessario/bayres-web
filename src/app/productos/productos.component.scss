@@ -4,6 +4,9 @@
   align-items: center;
   flex-direction: column;
   margin-top: $nav-height;
+  @include breakpoint('medium') {
+    margin-top: $nav-height-desktop;
+  }
 
   background: -webkit-linear-gradient(top, #466946, #d2f373, #466946);
   background: linear-gradient(to bottom, #466946, #d2f373, #466946);

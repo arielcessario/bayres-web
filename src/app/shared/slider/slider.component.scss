@@ -2,13 +2,17 @@
 // This file contains all styles related to the button component.
 // -----------------------------------------------------------------------------
 @import '../../app.component.scss';
+
 $slider-height: 600px;
 
 :host {
   position: relative;
   top: $nav-height;
+  @include breakpoint('medium') {
+    top: $nav-height-desktop;
+  }
   height: $slider-height;
-  #slider-container{
+  #slider-container {
     height: $slider-height;
     position: relative;
   }
@@ -56,8 +60,7 @@ $slider-height: 600px;
     #slider-03,
     #slider-04,
     #slider-05,
-    #slider-06
-    {
+    #slider-06 {
       position: absolute;
       top: 0;
       left: 0;
@@ -77,38 +80,45 @@ $slider-height: 600px;
       position: absolute;
       left: 0;
       right: 0;
-      top: 30%;
-      max-height: 300px;
-      height:300px;
+
+      top: 20%;
+      max-height: 400px;
+      height: 400px;
+
+      @include breakpoint('medium') {
+        top: 30%;
+        max-height: 300px;
+        height: 300px;
+      }
       display: flex;
       flex-direction: column;
       background-color: rgba(#d4f574, 0.8);
-      h1{
+      h1 {
         font-size: 40px;
         font-weight: 700;
-        margin: 10px 0 10px 0;
+          margin: 10px 0 10px 0;
       }
 
-      h2{
+      h2 {
         font-size: 30px;
         font-weight: 700;
         margin: 10px 0 10px 0;
       }
 
-      h1, span, h2{
+      h1, span, h2 {
         width: 100%;
         text-align: center;
         color: black;
       }
 
-      .slider-descr-actions{
+      .slider-descr-actions {
         background-color: black;
         font-size: 20px;
         color: white;
         display: flex;
         flex-direction: row;
         justify-content: center;
-        i{
+        i {
           margin: 10px;
           cursor: pointer;
         }
@@ -116,8 +126,10 @@ $slider-height: 600px;
       span {
         font-weight: bold;
         font-size: 16px;
-        max-width: 50%;
         margin: auto;
+        @include breakpoint('medium') {
+          max-width: 50%;
+        }
       }
     }
 

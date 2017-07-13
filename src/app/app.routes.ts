@@ -7,6 +7,7 @@ import {CarritoComponent} from "./carrito/carrito.component";
 import {UsuarioComponent} from "./usuario/usuario.component";
 import {AuthGuard} from "./core/auth/auth-guard.service";
 import {PedidoComponent} from "./pedidos/pedidos.component";
+import {ContactoComponent} from "./contacto/contacto.component";
 
 
 
@@ -18,6 +19,7 @@ const routes: Routes = [
     { path: 'carrito', component: CarritoComponent },
     { path: 'usuario', component: UsuarioComponent, canActivate: [AuthGuard] },
     { path: 'pedidos', component: PedidoComponent, canActivate: [AuthGuard] },
+    { path: 'contacto', component: ContactoComponent},
 ];
 
 export const Routing: ModuleWithProviders = RouterModule.forRoot(routes);

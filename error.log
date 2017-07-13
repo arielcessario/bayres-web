@@ -37,3 +37,27 @@
 2017-07-06 14:33:48: Main->__construct - No existe el permiso: getCarritos
 2017-07-06 14:33:48: Productos->getCarritos - Por favor ingrese con su usuario y contraseña
 2017-07-06 14:36:57: MySQL host or socket is not set
+2017-07-10 21:30:52: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1 query: select p.producto_id, pr.precio, p.en_oferta from productos p inner join precios pr on p.producto_id = pr.producto_id where pr.precio_tipo_id = 1 and p.producto_id in ();
+2017-07-10 21:43:51: You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1 query: select p.producto_id, pr.precio, p.en_oferta from productos p inner join precios pr on p.producto_id = pr.producto_id where pr.precio_tipo_id = 1 and p.producto_id in ();
+2017-07-12 10:18:46: Class dont exist: Mails contacto {"mail":"arielcessario@gmail.com","nombre":"Ariel","mensaje":"aaaaaaaaaaaaaa"} POST
+2017-07-12 10:44:07: Main->__construct - No existe el permiso: contactos
+2017-07-12 10:46:31: Main->__construct - No existe el permiso: contactos
+2017-07-12 10:47:38: Main->__construct - No existe el permiso: contactos
+2017-07-12 10:51:50: Main->__construct - No existe el permiso: contactos
+2017-07-12 10:52:57: Main->__construct - No existe el permiso: contactos
+2017-07-12 10:57:51: Main->__construct - No existe el permiso: contactos
+2017-07-12 11:06:04: Main->__construct - No existe el permiso: contactos
+2017-07-12 11:06:10: Main->__construct - No existe el permiso: contactos
+2017-07-12 11:06:45: Main->__construct - No existe el permiso: contactos
+2017-07-12 11:07:08: Main->__construct - No existe el permiso: contactos
+2017-07-12 11:08:18: Main->__construct - No existe el permiso: contactos
+2017-07-12 11:10:25: Main->__construct - No existe el permiso: contactos
+2017-07-12 11:10:45: Main->__construct - No existe el permiso: contactos
+2017-07-12 12:31:36: Productos->createCarrito - No hay productos en su carrito
+2017-07-12 12:31:44: Productos->createCarrito - No hay productos en su carrito
+2017-07-12 12:31:57: Productos->createCarrito - No hay productos en su carrito
+2017-07-12 12:34:20: Productos->createCarrito - No hay productos en su carrito
+2017-07-12 12:35:56: Productos->createCarrito - No hay productos en su carrito
+2017-07-12 15:36:06: Productos->createCarrito - No hay productos en su carrito
+2017-07-12 16:32:32: Main->__construct - No existe el permiso: sendCarritoComprador
+2017-07-12 20:54:26: Productos->createCarrito - No hay productos en su carrito

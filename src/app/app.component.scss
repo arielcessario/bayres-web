@@ -10,7 +10,6 @@
 // This file contains all application-wide Sass variables.
 // -----------------------------------------------------------------------------
 
-
 .deseado {
   color: red !important;
 }
@@ -22,7 +21,6 @@ $text-font-stack: 'PT Sans', sans-serif, sans-serif !default;
 /// Code (monospace) font family
 /// @type List
 $code-font-stack: 'PT Sans', monospace !default;
-
 
 /// Copy text color
 /// @type Color
@@ -44,22 +42,19 @@ $mid-grey: rgb(153, 153, 153) !default;
 /// @type Color
 $dark-grey: rgb(68, 68, 68) !default;
 
-
 /// Container's maximum width
 /// @type Length
 $max-width: 1180px !default;
 //$max-width: 100% !default;
 
-
 /// Breakpoints map
 /// @prop {String} keys - Keys are identifiers mapped to a given length
 /// @prop {Map} values - Values are actual breakpoints expressed in pixels
 $breakpoints: (
-  'small': 320px,
-  'medium': 768px,
-  'large': 1024px,
+        'small': 320px,
+        'medium': 768px,
+        'large': 1024px,
 ) !default;
-
 
 @mixin breakpoint($bp, $rule: min-width) {
   @media screen and (#{$rule}: map-get($breakpoints, $bp)) {
@@ -72,14 +67,11 @@ $fast-transition-time: 0.3s;
 $medium-transition-time: 1s;
 $long-transition-time: 3s;
 
-
 /// Tamaños de controles
 $control-small: 50px;
 $control-medium: 150px;
 $control-big: 350px;
 $control-full: 100%;
-
-
 
 /// Relative or absolute URL where all assets are served from
 /// @type String
@@ -89,13 +81,11 @@ $base-url: '/assets/' !default;
 
 // Altura de barra de navegación
 $nav-height: 100px;
-
+$nav-height-desktop: 80px;
 
 // Color accent
 $accent-1: #f9a703;
 $accent-2: #8ed758;
-
-
 
 @mixin clearfix {
   &:after {
@@ -145,20 +135,18 @@ $base-font-size: 16px !default;
   #{$property}: $value;
 }
 
-
 /// Mixin helper to prefix `@keyframes`
 /// @access private
 /// @param {String} $name - Animation name
 @mixin keyframes($name) {
-    @-webkit-keyframes #{$name} {
-        @content;
-    }
+  @-webkit-keyframes #{$name} {
+    @content;
+  }
 
-    @keyframes #{$name} {
-        @content;
-    }
+  @keyframes #{$name} {
+    @content;
+  }
 }
-
 
 /// Function helper to strip a single character from a string; by default, simply removes the character.
 /// @access private
@@ -175,12 +163,13 @@ $base-font-size: 16px !default;
 ///   }
 @function str-replace($string, $to-replace, $replacement:'') {
   $target-location: str-index($string, $to-replace);
-  @if $target-location == null { @return $string; }
+  @if $target-location == null {
+    @return $string;
+  }
   $string-without-target: str-slice($string, 1, $target-location - 1) + str-slice($string, $target-location + 1);
   $string: str-insert($string-without-target, $replacement, $target-location);
   @return $string;
 }
-
 
 /// Background gradient helper
 /// @access public
@@ -197,20 +186,19 @@ $base-font-size: 16px !default;
 ///     background: linear-gradient(to bottom, red, black);
 ///   }
 @mixin background-gradient($start-color, $end-color, $orientation) {
-    background: $start-color;
+  background: $start-color;
 
-    @if $orientation == 'vertical' {
-      background: -webkit-linear-gradient(top, $start-color, $end-color);
-      background: linear-gradient(to bottom, $start-color, $end-color);
-    } @else if $orientation == 'horizontal' {
-      background: -webkit-linear-gradient(left, $start-color, $end-color);
-      background: linear-gradient(to right, $start-color, $end-color);
-    } @else {
-      background: -webkit-radial-gradient(center, ellipse cover, $start-color, $end-color);
-      background: radial-gradient(ellipse at center, $start-color, $end-color);
-    }
+  @if $orientation == 'vertical' {
+    background: -webkit-linear-gradient(top, $start-color, $end-color);
+    background: linear-gradient(to bottom, $start-color, $end-color);
+  } @else if $orientation == 'horizontal' {
+    background: -webkit-linear-gradient(left, $start-color, $end-color);
+    background: linear-gradient(to right, $start-color, $end-color);
+  } @else {
+    background: -webkit-radial-gradient(center, ellipse cover, $start-color, $end-color);
+    background: radial-gradient(ellipse at center, $start-color, $end-color);
+  }
 }
-
 
 /// Background size helper
 /// @access public
@@ -227,9 +215,8 @@ $base-font-size: 16px !default;
 ///     background-size: 100% 100%;
 ///   }
 @mixin background-size($width, $height: $width) {
-    @include prefix(background-size, $width $height, 'webkit' 'moz');
+  @include prefix(background-size, $width $height, 'webkit' 'moz');
 }
-
 
 /// Separated border-radius helpers
 /// @access public
@@ -257,12 +244,11 @@ $base-font-size: 16px !default;
 ///     border-bottom-left-radius: 4px;
 ///   }
 @mixin border-radius-separate($top-left-radius, $top-right-radius, $bottom-right-radius, $bottom-left-radius) {
-    @include prefix(border-top-left-radius, $top-left-radius, 'webkit' 'moz');
-    @include prefix(border-top-right-radius, $top-right-radius, 'webkit' 'moz');
-    @include prefix(border-bottom-right-radius, $bottom-right-radius, 'webkit' 'moz');
-    @include prefix(border-bottom-left-radius, $bottom-left-radius, 'webkit' 'moz');
+  @include prefix(border-top-left-radius, $top-left-radius, 'webkit' 'moz');
+  @include prefix(border-top-right-radius, $top-right-radius, 'webkit' 'moz');
+  @include prefix(border-bottom-right-radius, $bottom-right-radius, 'webkit' 'moz');
+  @include prefix(border-bottom-left-radius, $bottom-left-radius, 'webkit' 'moz');
 }
-
 
 /// Box-sizing helper
 /// @access public
@@ -277,9 +263,8 @@ $base-font-size: 16px !default;
 ///     box-sizing: border-box;
 ///   }
 @mixin box-sizing($type) {
-    @include prefix(box-sizing, $type, 'moz');
+  @include prefix(box-sizing, $type, 'moz');
 }
-
 
 /// Horizontally centers block elements
 /// @access public
@@ -294,11 +279,10 @@ $base-font-size: 16px !default;
 ///     margin-right: auto;
 ///   }
 @mixin center-block {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
-
 
 /// Horizontally and vertically centers block elements
 /// Important: you must have a parent element with `position: relative`.
@@ -317,12 +301,11 @@ $base-font-size: 16px !default;
 ///     transform: translate(-50%, -50%);
 ///   }
 @mixin center-both {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    @include prefix(transform, translate(-50%, -50%), 'webkit' 'ms');
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  @include prefix(transform, translate(-50%, -50%), 'webkit' 'ms');
 }
-
 
 /// Vertically centers block elements with known height.
 /// @access public
@@ -339,10 +322,10 @@ $base-font-size: 16px !default;
 ///     margin-top: -21px;
 ///   }
 @mixin center-h($height) {
-    position: absolute;
-    top: 50%;
-    height: $height;
-    margin-top: -($height / 2);
+  position: absolute;
+  top: 50%;
+  height: $height;
+  margin-top: -($height / 2);
 }
 
 /// Vertically centers block elements with unknown height.
@@ -360,11 +343,10 @@ $base-font-size: 16px !default;
 ///     transform: translateY(-50%);
 ///   }
 @mixin center-h--unk {
-    position: relative;
-    top: 50%;
-    @include prefix(transform, translateY(-50%), 'webkit' 'ms');
+  position: relative;
+  top: 50%;
+  @include prefix(transform, translateY(-50%), 'webkit' 'ms');
 }
-
 
 /// Clearfix extend
 /// @access public
@@ -373,18 +355,17 @@ $base-font-size: 16px !default;
 ///     @extend %clearfix;
 ///   }
 %clearfix {
-    *zoom: 1;
+  *zoom: 1;
 
-    &:before, &:after {
-        content: ' ';
-        display: table;
-    }
+  &:before, &:after {
+    content: ' ';
+    display: table;
+  }
 
-    &:after {
-        clear: both;
-    }
+  &:after {
+    clear: both;
+  }
 }
-
 
 /// Adds a thin black line above the element, and a thin gray line below the element, creating an inlay effect.
 /// @access public
@@ -397,9 +378,8 @@ $base-font-size: 16px !default;
 ///     box-shadow: rgba(255, 255, 255, 0.5) 0 1px 0, inset rgba(0, 0, 0, 0.75) 0 1px 0;
 ///   }
 @mixin outline {
-    box-shadow: rgba(255, 255, 255, 0.5) 0 1px 0, inset rgba(0, 0, 0, 0.75) 0 1px 0;
+  box-shadow: rgba(255, 255, 255, 0.5) 0 1px 0, inset rgba(0, 0, 0, 0.75) 0 1px 0;
 }
-
 
 /// Given the location of a webfont, will generate a font-face declaration with multiple file formats.
 /// @access public
@@ -413,15 +393,14 @@ $base-font-size: 16px !default;
   @font-face {
     font-family: quote($font-name);
     src: url($file-name + '.eot');
-    src: url($file-name + '.eot?#iefix')  format('embedded-opentype'),
-         url($file-name + '.woff') format('woff'),
-         url($file-name + '.ttf')  format('truetype'),
-         url($file-name + '.svg##{$font-name}')  format('svg');
+    src: url($file-name + '.eot?#iefix') format('embedded-opentype'),
+    url($file-name + '.woff') format('woff'),
+    url($file-name + '.ttf') format('truetype'),
+    url($file-name + '.svg##{$font-name}') format('svg');
     font-weight: $weight;
     font-style: $style;
   }
 }
-
 
 /// Given a font size in pixels, reproduces that font size in rems.
 /// @access public
@@ -444,7 +423,6 @@ $base-font-size: 16px !default;
   font-size: ($size / $base-font-size) * 1rem;
 }
 
-
 /// Forces browsers to use hardware acceleration for transforms
 /// @access public
 /// @example scss - Usage
@@ -458,9 +436,8 @@ $base-font-size: 16px !default;
 ///     transform: translate3d(0, 0, 0);
 ///   }
 @mixin ha {
-    @include prefix(transform, translate3d(0, 0, 0), 'webkit' 'ms');
+  @include prefix(transform, translate3d(0, 0, 0), 'webkit' 'ms');
 }
-
 
 /// Retina image media query helper; given an image path with a 2x-sized version of an image, will load that image as a background-image on high-resolution devices.
 /// @access public
@@ -472,15 +449,14 @@ $base-font-size: 16px !default;
 ///     @include image-2x('../images/image.png', 100%, auto);
 ///   }
 @mixin image-2x($image, $width, $height) {
-    @media (-webkit-min-device-pixel-ratio: 1.3),
-           (min-resolution: 124dpi),
-           (min-resolution: 1.3dppx) {
-        /* on retina, use image that's scaled by 2 */
-        background-image: url($image);
-        background-size: $width $height;
-    }
+  @media (-webkit-min-device-pixel-ratio: 1.3),
+  (min-resolution: 124dpi),
+  (min-resolution: 1.3dppx) {
+    /* on retina, use image that's scaled by 2 */
+    background-image: url($image);
+    background-size: $width $height;
+  }
 }
-
 
 /// Generates line-height values in both pixels and rems.
 /// @access public
@@ -495,10 +471,9 @@ $base-font-size: 16px !default;
 ///     line-height: 1rem;
 ///   }
 @mixin line-height($height-value: 12) {
-    line-height: $height-value * 1px; //fallback for old browsers
-    line-height: (1 / ($base-font-size / ($base-font-size * 0 + 1)) * $height-value * 1rem);
+  line-height: $height-value * 1px; //fallback for old browsers
+  line-height: (1 / ($base-font-size / ($base-font-size * 0 + 1)) * $height-value * 1rem);
 }
-
 
 /// Media query helper for declaring media queries by width, and, optionally, ratio.
 /// @access public
@@ -511,20 +486,18 @@ $base-font-size: 16px !default;
 ///     }
 ///   }
 @mixin mquery($width, $ratio: false) {
-    @if $ratio {
-        @media
-            only screen and (max-width: $width) and  (min--moz-device-pixel-ratio: $ratio),
-            only screen and (max-width: $width) and  (-webkit-min-device-pixel-ratio: $ratio),
-            only screen and (max-width: $width) and  (min-device-pixel-ratio: $ratio) {
-            @content;
-        }
-    } @else {
-        @media only screen and (max-width: $width) {
-            @content;
-        }
+  @if $ratio {
+    @media only screen and (max-width: $width) and (min--moz-device-pixel-ratio: $ratio),
+    only screen and (max-width: $width) and (-webkit-min-device-pixel-ratio: $ratio),
+    only screen and (max-width: $width) and (min-device-pixel-ratio: $ratio) {
+      @content;
     }
+  } @else {
+    @media only screen and (max-width: $width) {
+      @content;
+    }
+  }
 }
-
 
 /// Media query helper for declaring media queries by device pixel ratio.
 /// @access public
@@ -536,15 +509,13 @@ $base-font-size: 16px !default;
 ///     }
 ///   }
 @mixin mquery-r($ratio) {
-    @media
-        only screen and (-webkit-min-device-pixel-ratio: $ratio),
-        only screen and (min--moz-device-pixel-ratio: $ratio),
-        only screen and (-o-min-device-pixel-ratio: $ratio),
-        only screen and (min-device-pixel-ratio: $ratio) {
-        @content;
-    }
+  @media only screen and (-webkit-min-device-pixel-ratio: $ratio),
+  only screen and (min--moz-device-pixel-ratio: $ratio),
+  only screen and (-o-min-device-pixel-ratio: $ratio),
+  only screen and (min-device-pixel-ratio: $ratio) {
+    @content;
+  }
 }
-
 
 /// Given an opacity value, generates that value as well as a way to display that opacity value in Internet Explorer 8 and 9.
 /// @access public
@@ -559,10 +530,9 @@ $base-font-size: 16px !default;
 ///     filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=#50)";
 ///   }
 @mixin opacity($opacity) {
-    opacity: $opacity;
-    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$opacity * 100})";
+  opacity: $opacity;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$opacity * 100})";
 }
-
 
 /// Generates the color black, with, optionally, a set opacity.
 /// @access public
@@ -576,9 +546,8 @@ $base-font-size: 16px !default;
 ///     border-color: rgba(0, 0, 0, 0.1);
 ///   }
 @function black($opacity) {
-    @return rgba(0, 0, 0, $opacity);
+  @return rgba(0, 0, 0, $opacity);
 }
-
 
 /// Generates the color white, with, optionally, a set opacity.
 /// @access public
@@ -592,9 +561,8 @@ $base-font-size: 16px !default;
 ///     border-color: rgba(255, 255, 255, 0.1);
 ///   }
 @function white($opacity) {
-    @return rgba(255, 255, 255, $opacity);
+  @return rgba(255, 255, 255, $opacity);
 }
-
 
 /// Shorthandizes position declarations.
 /// @access public
@@ -614,13 +582,12 @@ $base-font-size: 16px !default;
 ///     top: 10px;
 ///   }
 @mixin position($type, $top: null, $right: null, $bottom: null, $left: null) {
-    position: $type;
-    top: $top;
-    right: $right;
-    bottom: $bottom;
-    left: $left;
+  position: $type;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
 }
-
 
 /// Sizing helper
 /// @access public
@@ -636,10 +603,9 @@ $base-font-size: 16px !default;
 ///     height: 350px;
 ///   }
 @mixin size($width, $height: $width) {
-    width: $width;
-    height: $height;
+  width: $width;
+  height: $height;
 }
-
 
 /// Embossing text shadow
 /// @access public
@@ -653,9 +619,8 @@ $base-font-size: 16px !default;
 ///     text-shadow: rgba(255, 255, 255, 0.5) 0 1px 0;
 ///   }
 @mixin text-shadow($value) {
-    text-shadow: rgba(255, 255, 255, $value) 0 1px 0;
+  text-shadow: rgba(255, 255, 255, $value) 0 1px 0;
 }
-
 
 /// Automatically prefix any transform
 /// @access public
@@ -670,10 +635,9 @@ $base-font-size: 16px !default;
 ///     -ms-transform: translateX(10px);
 ///     transform: translateX(10px);
 ///   }
-@mixin transform($transformation){
+@mixin transform($transformation) {
   @include prefix(transform, $transformation, 'webkit' 'ms');
 }
-
 
 /// Transition helper
 /// @param {Time} $time [1s] - Duration
@@ -688,9 +652,8 @@ $base-font-size: 16px !default;
 ///     transition: all 0.3s ease-in;
 ///   }
 @mixin transition($time: 1s, $timing-function: ease-in-out) {
-    @include prefix(transition, all $time $timing-function, 'webkit');
+  @include prefix(transition, all $time $timing-function, 'webkit');
 }
-
 
 /// Generates a grow-then-shrink (or shrink-then-grow) animation using transform(scale).
 /// @access public
@@ -721,7 +684,7 @@ $base-font-size: 16px !default;
 @mixin scale($scale-change:1.1, $animation-properties: 1s ease-in-out) {
   $alias: 'scale-' + str-replace($scale-change + '', '.', '-');
 
-  @include keyframes($alias){
+  @include keyframes($alias) {
     0%, 100% {
       @include transform(scale(1));
     }
@@ -732,7 +695,6 @@ $base-font-size: 16px !default;
 
   @include prefix(animation, $alias $animation-properties, 'webkit');
 }
-
 
 /// Given two opacity values, animates an element between those opacity values.
 /// @access public
@@ -760,8 +722,8 @@ $base-font-size: 16px !default;
 ///     }
 ///   }
 @mixin fade($fade-from: 0, $fade-to: 1, $animation-properties: 1s ease) {
-    $alias: fade- + str-replace($fade-from + '', '.', '-') + '-' + str-replace($fade-to + '', '.', '-');
-    @include keyframes($alias){
+  $alias: fade- + str-replace($fade-from + '', '.', '-') + '-' + str-replace($fade-to + '', '.', '-');
+  @include keyframes($alias) {
     from {
       @include opacity($fade-from);
     }
@@ -771,7 +733,6 @@ $base-font-size: 16px !default;
   }
   @include prefix(animation, $alias $animation-properties, 'webkit');
 }
-
 
 /// Slide-in-from creates and calls an animation that slides an element on a given axis for a given amount of space. The offset is measured in the distance from the location the element would naturally fall in, were transforms not applied to it.
 /// @access public
@@ -809,7 +770,7 @@ $base-font-size: 16px !default;
   $slide-start: if($slide-axis == x, translateX($slide-offset), translateY($slide-offset));
   $slide-end: if($slide-axis == x, translateX(0), translateY(0));
 
-  @include keyframes(slide-in-#{$slide-axis}-#{$slide-offset}){
+  @include keyframes(slide-in-#{$slide-axis}-#{$slide-offset}) {
     0% {
       @include opacity(0);
       @include transform($slide-start);
@@ -824,8 +785,6 @@ $base-font-size: 16px !default;
 
   @include prefix(animation, slide-in-#{$slide-axis}-#{$slide-offset} $animation-properties, 'webkit');
 }
-
-
 
 /**
  * Computes a top-shadow for a card effect.
@@ -877,7 +836,6 @@ $base-font-size: 16px !default;
   }
 }
 
-
 /// Slightly lighten a color
 /// @access public
 /// @param {Color} $color - color to tint
@@ -895,8 +853,6 @@ $base-font-size: 16px !default;
 @function shade($color, $percentage) {
   @return mix(black, $color, $percentage);
 }
-
-
 
 //// ESTILOS BASE
 

@@ -39,6 +39,8 @@ export class DbConnectService implements OnInit {
 
     public get(obj: string, fnc: string, prm: any) {
 
+        this.coreService.setLoadingStatus(true);
+
         if (CacheService.get[obj] != null && CacheService.get[obj][fnc] != null) {
             return new BehaviorSubject(CacheService.get(obj, fnc));
         }
@@ -63,16 +65,17 @@ export class DbConnectService implements OnInit {
 
         return response
             .map((data: Response) => {
-                return this.extractData(obj, fnc, data);
+                return this.extractData(obj, fnc, data, this.coreService);
             })
-            .catch((err: Response | any):any => {
-                return this.handleError(err, this);
+            .catch((err: Response | any): any => {
+                return this.handleError(err, this.coreService);
             })
             .share();
 
     }
 
     public post(obj: string, fnc: string, prm: any) {
+        this.coreService.setLoadingStatus(true);
         let header = {};
         if (localStorage.getItem('currentUser') || prm['token_social']) {
             if (JSON.parse(localStorage.getItem('currentUser'))) {
@@ -102,10 +105,10 @@ export class DbConnectService implements OnInit {
 
         return response
             .map((data: Response) => {
-                return this.extractData(obj, fnc, data);
+                return this.extractData(obj, fnc, data, this.coreService);
             })
             .catch((err: Response | any) => {
-                return this.handleError(err, this);
+                return this.handleError(err, this.coreService);
             })
             .share();
 
@@ -140,7 +143,7 @@ export class DbConnectService implements OnInit {
         }
     }
 
-    public extractData(obj: string, fnc: string, data: Response) {
+    public extractData(obj: string, fnc: string, data: Response, coreService) {
         console.log(data);
 
         if (data['_body'] != '') {
@@ -149,30 +152,42 @@ export class DbConnectService implements OnInit {
             CacheService.set(obj, fnc, body);
 
             if (data['statusText'].indexOf('Expired') > -1) {
-                console.log('entra');
                 this.coreService.logOut();
             }
 
+            coreService.setLoadingStatus(false);
             return body || {};
         } else {
+            coreService.setLoadingStatus(false);
             return {}
         }
     }
 
-    private handleError(error: Response | any, parent) {
+    private handleError(error: Response | any, coreService) {
         console.log(error);
 
         // In a real world app, you might use a remote logging infrastructure
         let errMsg: string;
+        let isJson: boolean;
+        let err = '';
         if (error instanceof Response) {
-            const body = error.json() || '';
-            const err = body.error || JSON.stringify(body);
+
+            try {
+                error.json();
+                isJson = true;
+            } catch (e) {
+                isJson = false;
+            }
+
+            const body = (isJson) ? error.json() : error['_body'];
+            err = body.error || JSON.stringify(body);
             errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
         } else {
             errMsg = error.message ? error.message : error.toString();
         }
-        parent.coreService.setToast({type: 'error', title: 'Upppssss', body: errMsg});
 
+        coreService.setToast({type: 'error', title: 'Upppssss', body: errMsg});
+        coreService.setLoadingStatus(false);
         return Observable.throw(errMsg);
     }
 

@@ -10,6 +10,8 @@ import {CarrouselComponent} from "./carrousel/carrousel.component";
 import {VirtualScrollComponent} from "./infinite-scroll/infinite-scroll";
 import {AutocompleteComponent} from "./autocomplete/autocomplete.component";
 import {NavComponent} from "./nav/nav.component";
+import {FooterComponent} from "./footer/footer.component";
+import {LoaderComponent} from "./loader/loader.component";
 
 
 @NgModule({
@@ -21,7 +23,9 @@ import {NavComponent} from "./nav/nav.component";
         CarrouselComponent,
         VirtualScrollComponent,
         AutocompleteComponent,
-        NavComponent
+        NavComponent,
+        FooterComponent,
+        LoaderComponent
     ],
     imports: [
         CommonModule,
@@ -37,7 +41,9 @@ import {NavComponent} from "./nav/nav.component";
         CarrouselComponent,
         VirtualScrollComponent,
         AutocompleteComponent,
-        NavComponent
+        NavComponent,
+        FooterComponent,
+        LoaderComponent
     ]
 })
 export class SharedModule {

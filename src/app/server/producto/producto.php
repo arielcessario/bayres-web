@@ -16,10 +16,19 @@ class Productos extends Main
     function createCarrito($params)
     {
 
+
+
         $productos = '';
         foreach ($params->productos as $key => $value) {
             $productos = $productos . ',' . $key;
         }
+
+        if($productos == ''){
+
+            $this->sendError('No hay productos en su carrito');
+            exit;
+        }
+
         $productos = substr($productos, 1);
 
         $tipo_precio = ($this->user->rol_id == 0 || $this->user->rol_id == 2 || $this->user->rol_id == 4) ? 1 : 0;

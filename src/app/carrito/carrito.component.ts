@@ -5,6 +5,7 @@ import {ProvinciaService} from "../core/provincia/provincia.service"
 import {FormGroup, Validators, FormBuilder} from "@angular/forms";
 import {CoreService} from "../core/core.service";
 import {DbConnectService} from "../core/db-connect/db-connect.service";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'carrito-component',
@@ -67,21 +68,26 @@ export class CarritoComponent implements OnInit {
     nro: string;
 
 
-    constructor(private coreService: CoreService, private dbConnectService: DbConnectService, private fb: FormBuilder) {}
+    constructor(private coreService: CoreService, private router: Router, private dbConnectService: DbConnectService, private fb: FormBuilder) {
+    }
 
     confirmar() {
 
-        if(!this.user.nombre){
+        if (!this.user.nombre) {
             this.coreService.setLoginStatus({showLogin: true});
             return;
         }
+
+        // if(this.items.length == 0){
+        //     return;
+        // }
 
         if (this.tipoEnvio == 1 && this.formEnvio.invalid) {
             return;
         }
 
         let productos = {};
-        for(var i in this.items){
+        for (var i in this.items) {
             productos[this.items[i].producto_id] = this.items[i].cantidad;
         }
 
@@ -90,25 +96,41 @@ export class CarritoComponent implements OnInit {
                 productos: productos,
                 origen: this.tipoEnvio,
                 destino: (this.tipoEnvio == 1) ? this.lugarEnvio : this.sucursal
-            }).subscribe(response=> {
-            // if (response['status'] == 200) {
-            //     this.dbConnectService.post('usuario', 'updateUsuario', {}).subscribe(response=> {
-            //
-            //
-            //
-            //     });
-            // }
-        });
+            })
+            .subscribe(response=> {
+
+                this.coreService.setToast({
+                    type: 'success',
+                    title: 'Pedido Realizado',
+                    body: 'Un representante se pondrá en contacto a la brevedad.'
+                });
+
+
+                this.dbConnectService.post('mails', 'sendCarritoComprador', {
+                    productos: productos,
+                    envio: ((this.tipoEnvio == 1) ? 'Envio a ' : 'Retira por ') + ((this.tipoEnvio == 1) ? this.provincias[this.lugarEnvio - 1]['name'] + ' - ' + this.user.calle + ' ' + this.user.nro : this.sucursales[this.sucursal - 1]['nombre'] + ' - ' + this.sucursales[this.sucursal - 1]['direccion']),
+                    carrito_id: response.carrito_id
+                })
+                    .subscribe(()=> {
+
+                        this.coreService.clearCarrito();
+                        setTimeout(()=> {
+                            this.items = [];
+                        }, 0);
+
+                    });
+
+
+            });
     }
 
     ngOnInit() {
-        this.dbConnectService.get('sucursales', 'get', {all: false}).subscribe((data)=>{
+        this.dbConnectService.get('sucursales', 'get', {all: false}).subscribe((data)=> {
             this.sucursales = data;
         });
 
         this.coreService.getProductos.subscribe(productos => {
             this.items = this.coreService.filterProducts('en_carrito', 'true', 'true');
-            console.log(this.items);
         });
 
         this.coreService.getCartStatus.subscribe((data)=> {
@@ -118,7 +140,7 @@ export class CarritoComponent implements OnInit {
         this.provincias = ProvinciaService.get();
 
 
-        this.user = (localStorage.getItem('currentUser'))?(JSON.parse(localStorage.getItem('currentUser'))).user:{};
+        this.user = (localStorage.getItem('currentUser')) ? (JSON.parse(localStorage.getItem('currentUser'))).user : {};
 
         this.buildForm();
     }
@@ -128,25 +150,28 @@ export class CarritoComponent implements OnInit {
         this.coreService.updateCarrito(item);
     }
 
-    goTo(path) {
-        // NavService.send(path);
+    goTo(link): void {
+        this.router.navigate([link]);
+        setTimeout(()=> {
+            this.coreService.refreshAll();
+        }, 0);
     }
 
-    desear(item){
-        if(item['deseado']){
+    desear(item) {
+        if (item['deseado']) {
             delete item['deseado'];
-        }else{
+        } else {
             item['deseado'] = true;
         }
 
         let ret = this.dbConnectService.post('productos', 'desear', {producto_id: item.producto_id});
 
-        ret.subscribe(data=>{
+        ret.subscribe(data=> {
             console.log(data);
         });
 
-        this.coreService.showToast.subscribe(data=>{
-            if( data.type == 'error' || data.message.indexOf('Por favor ingrese con su usuario y contraseña')){
+        this.coreService.showToast.subscribe(data=> {
+            if (data.type == 'error' || data.message.indexOf('Por favor ingrese con su usuario y contraseña')) {
                 this.coreService.setLoginStatus({showLogin: true});
                 delete item['deseado'];
             }
@@ -168,12 +193,10 @@ export class CarritoComponent implements OnInit {
 
 
         this.formEnvio.setValue({
-            'calle': (this.user.calle)?this.user.calle:'',
-            'nro': (this.user.nro)?this.user.nro:''
+            'calle': (this.user.calle) ? this.user.calle : '',
+            'nro': (this.user.nro) ? this.user.nro : ''
         });
     }
-
-
 
 
 }

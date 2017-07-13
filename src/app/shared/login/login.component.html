@@ -2,8 +2,8 @@
     <div class="logmod">
         <div class="logmod__wrapper">
             <span class="logmod__close" (click)="close()">Close</span>
-            <button (click)="logout()">Salir</button>
-            <button (click)="signIn('google')">Google</button>
+            <!--<button (click)="logout()">Salir</button>-->
+            <!--<button (click)="signIn('google')">Google</button>-->
             <div class="logmod__container">
                 <ul class="logmod__tabs">
                     <li data-tabtar="lgm-2" [ngClass]="{'current':current == 1}">
@@ -15,9 +15,9 @@
                 </ul>
                 <div class="logmod__tab-wrapper">
                     <div class="logmod__tab lgm-1" [ngClass]="{'show':current == 0}">
-                        <div class="logmod__heading">
-                            <span class="logmod__heading-subtitle">Complete sus datos personales para <strong>crear su cuenta</strong></span>
-                        </div>
+                        <!--<div class="logmod__heading">-->
+                            <!--<span class="logmod__heading-subtitle">Complete sus datos personales para <strong>crear su cuenta</strong></span>-->
+                        <!--</div>-->
                         <div class="logmod__form">
                             <form [formGroup]="formCreateUsuario"
                                   novalidate (ngSubmit)="create()"
@@ -80,9 +80,9 @@
                         </div>
                     </div>
                     <div class="logmod__tab lgm-2" [ngClass]="{'show':current == 1}">
-                        <div class="logmod__heading">
-                            <span class="logmod__heading-subtitle">Ingrese su email y password <strong>para ingresar</strong></span>
-                        </div>
+                        <!--<div class="logmod__heading">-->
+                            <!--<span class="logmod__heading-subtitle">Ingrese su email y password <strong>para ingresar</strong></span>-->
+                        <!--</div>-->
                         <div class="logmod__form">
                             <form [formGroup]="formLogin"
                                   novalidate (ngSubmit)="fnLogin()"
@@ -110,8 +110,8 @@
                                     </div>
                                 </div>
                                 <div class="simform__actions">
-                                    <input class="sumbit" name="commit" type="submit" value="Log In"/>
-                                    <span class="simform__actions-sidetext"><a class="special" role="link" href="#">Forgot your password?<br>Click here</a></span>
+                                    <input class="sumbit" name="commit" type="submit" value="Ingresar"/>
+                                    <span class="simform__actions-sidetext"><a class="special" role="link" href="#">Olvidaste tu password?<br>Click acá</a></span>
                                 </div>
                             </form>
                         </div>

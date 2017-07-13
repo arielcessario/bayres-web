@@ -15,8 +15,8 @@
         <carrousel-component [data]="en_oferta"></carrousel-component>
         <h1 class="principal-section-title">DESTACADOS</h1>
         <carrousel-component [data]="destacado"></carrousel-component>
-        <h1 class="principal-section-title">MIS DESEOS</h1>
-        <carrousel-component [data]="deseado"></carrousel-component>
+        <h1 class="principal-section-title" *ngIf="loged">MIS DESEOS</h1>
+        <carrousel-component [data]="deseado" *ngIf="loged"></carrousel-component>
     </div>
 </div>
 

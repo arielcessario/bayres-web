@@ -2,6 +2,9 @@
 
 :host {
   margin-top: $nav-height;
+  @include breakpoint('medium') {
+    margin-top: $nav-height-desktop;
+  }
   background-color: #222e23;
   width: 100%;
   display: flex;
@@ -107,9 +110,8 @@
     display: flex;
     justify-content: center;
     flex-direction: column;
-    padding: 10px 5px 10px 5px;
+    padding: 10px 5px 0px 5px;
 
-    //border-bottom: solid 1px #cfd0d1;
 
     .carrito-item-body {
       display: flex;
@@ -187,6 +189,11 @@
     }
   }
 
+  .carrito-item-nombre {
+    font-weight: 700;
+
+  }
+
   .carrito-item {
     visibility: collapse;
     display: none;
@@ -210,9 +217,7 @@
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        .carrito-item-nombre {
-          font-weight: 700;
-        }
+
         #carrito-item-center-bottom {
           background-color: black;
           i {
@@ -260,6 +265,13 @@
     input[type=number]::-webkit-inner-spin-button {
       opacity: 1;
     }
+  }
+}
+
+#carrito-item-center-top{
+  margin-bottom: 10px;
+  @include breakpoint('medium') {
+    margin-bottom: 0;
   }
 }
 

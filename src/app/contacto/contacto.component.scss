@@ -12,7 +12,31 @@
   align-items: center;
 }
 
-#usuario-main {
+input, textarea{
+  background-color: transparent;
+  border: 0px solid;
+}
+
+.nombre-mail{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  flex-wrap: wrap;
+  @include breakpoint('medium') {
+    flex-wrap: nowrap;
+  }
+  .contacto-item{
+    width: 50%;
+  }
+}
+
+.form-group{
+  label{
+    font-weight: 700;
+  }
+}
+
+#contacto-main {
   margin-top: 30px;
   margin-bottom: 30px;
   display: flex;
@@ -26,7 +50,7 @@
 
 }
 
-#usuario-title {
+#contacto-title {
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -48,48 +72,43 @@
   }
 }
 
-.usuario-items-title {
+.contacto-items-title {
   width: calc(100% - 20px);
   display: flex;
   flex-direction: row;
   border-bottom: 1px solid #cfd0d1;
   padding: 10px;
-  span {
-    font-weight: 700;
-  }
-
-  span:nth-child(1) {
+  text-align: center;
+  font-size: 24px;
+  span{
     width: 100%;
-  }
-  span:nth-child(2),
-  span:nth-child(3),
-  span:nth-child(4) {
-    margin-left: 10px;
-    min-width: 95px;
-    max-width: 95px;
   }
 }
 
-#usuario-items {
+#contacto-items {
   width: 100%;
 
-  .usuario-item {
+  .contacto-item {
     padding: 10px;
     border-bottom: 1px solid #cfd0d1;
 
     display: flex;
     flex-direction: column;
+    width: calc(100% - 20px);
 
-    input, select{
-      height: 30px;
+    input, select, textarea{
       margin-left: 10px;
       font-weight: 700;
       font-size: 20px;
     }
+    input{
+
+      height: 30px;
+    }
   }
 }
 
-#usuario-total{
+#contacto-total{
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -102,7 +121,7 @@
   }
 }
 
-#usuario-envio{
+#contacto-envio{
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
@@ -122,7 +141,7 @@
   }
 }
 
-#usuario-disclaimer{
+#contacto-disclaimer{
   width: calc(100% - 20px);
   display: flex;
   flex-direction: column;
@@ -136,7 +155,37 @@
   }
 }
 
-#usuario-buttons{
+.contacto-sucursales{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  width: calc(100% - 20px);
+  margin: 10px;
+
+  @include breakpoint('medium') {
+    justify-content: space-between;
+    flex-wrap: nowrap;
+  }
+
+  div{
+    display: flex;
+    flex-direction: column;
+  }
+  span:nth-child(1){
+    font-weight: 700;
+    margin-bottom: 4px;
+    font-size: 20px;
+  }
+
+  span{
+    font-size: 18px;
+    margin: 0 2px 0 2px;
+  }
+
+}
+
+#contacto-buttons{
   width: calc(100% - 30px);
   display: flex;
   flex-direction: row;

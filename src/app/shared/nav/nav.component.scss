@@ -36,17 +36,18 @@
 
   #nav-categorias-details {
 
-    width: calc(100% - 20px);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
     background-color: black;
     position: fixed;
     left: 0;
-    top: $nav-height / 2;
+    right: 0;
+    top: $nav-height;
+
+    @include breakpoint('medium') {
+      top: $nav-height-desktop;
+    }
     z-index: 101;
     padding: 10px;
-    max-height: 100%;
+    max-height: 60%;
     overflow-x: auto;
 
     @include breakpoint('medium') {
@@ -58,13 +59,20 @@
       background-color: black;
       @include shadow(1, black);
       top: $nav-height / 2 - 10;
+      @include breakpoint('medium') {
+        //top: $nav-height-desktop / 2 - 10;
+        top: $nav-height-desktop;
+      }
+      max-height: 100%;
     }
 
     #nav-categorias-scroll{
-
+      margin-top: 0;
       display: flex;
       flex-direction: column;
       justify-content: space-around;
+      align-items: stretch;
+      min-height: 100%;
     }
 
     .nav-categorias-column {
@@ -89,6 +97,20 @@
 }
 
 
+
+#nav-logged-out {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  cursor: pointer;
+  i {
+    color: $accent-2;
+    margin: 4px 5px 2px 2px;
+    font-size: 18px;
+  }
+
+}
+
 .nav-container {
   visibility: collapse;
   position: fixed;
@@ -96,6 +118,9 @@
   left: 0;
   right: 0;
   height: $nav-height;
+  @include breakpoint('medium') {
+    height: $nav-height-desktop;
+  }
   z-index: 100;
   background-color: black;
   color: white;
@@ -145,12 +170,25 @@
   }
 
   #nav-usuario-menu {
-    position: absolute;
+    position: fixed;
     display: flex;
     flex-direction: column;
     background-color: white;
     z-index: 101;
+    left: 0;
+    top: $nav-height;
+    @include breakpoint('medium') {
+      top: $nav-height-desktop;
+    }
+    width: 100%;
+
     @include shadow(1, black);
+    @include breakpoint('medium') {
+      width: auto;
+      position: absolute;
+      top: auto;
+      left: auto;
+    }
   }
 
   .nav-logo {
@@ -170,6 +208,11 @@
     margin: 0 30px 0 0;
     cursor: pointer;
   }
+
+
+
+
+
 
   #nav-usuario-menu {
     background-color: black;
@@ -243,18 +286,7 @@
     }
   }
 
-  #nav-logged-out {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    cursor: pointer;
-    i {
-      color: $accent-2;
-      margin: 4px 5px 2px 2px;
-      font-size: 18px;
-    }
 
-  }
 
   ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
     color: black;
@@ -274,17 +306,26 @@
   }
 
   #nav-sucursales-details {
+    @include breakpoint('medium') {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      overflow-y: hidden;
+    }
+
+    overflow-y: auto;
     width: 100%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    height: 300px;
+    height: 350px;
     background-color: black;
     @include shadow(1, black);
     position: absolute;
     left: 0;
     top: $nav-height / 2 - 10;
+    @include breakpoint('medium') {
+      //top: $nav-height-desktop / 2 - 10;
+      top: $nav-height-desktop;
+    }
     z-index: 101;
     .nav-sucursal {
       min-width: 25%;
@@ -310,7 +351,11 @@
 
       .nav-sucursal-fade {
         top: 0;
-        height: 250px;
+        height: 255px;
+        @include breakpoint('medium') {
+
+          height: 300px;
+        }
         color: $accent-2;
         @include transition(0.3s);
         &:hover {
@@ -407,6 +452,9 @@
   justify-content: space-between;
   flex-direction: column;
   height: $nav-height;
+  @include breakpoint('medium') {
+    height: $nav-height-desktop;
+  }
   background-color: black;
   color: white;
   position: fixed;
@@ -447,6 +495,7 @@
     right: 0;
     left: 0;
     background-color: black;
+    padding: 0 10px 0 10px;
 
     .nav-cart-image {
       position: relative;
@@ -500,6 +549,10 @@
       flex-direction: column;
       width: calc(100% - 10px);
       padding: 5px;
+
+
+
+
       .nav-action-user{
 
         display: flex;

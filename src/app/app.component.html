@@ -1,4 +1,6 @@
-<toaster-container></toaster-container>
+<toaster-container [toasterconfig]="toasterconfig"></toaster-container>
 <router-outlet></router-outlet>
 <nav-component></nav-component>
 <login-component *ngIf="showLogin"></login-component>
+<footer-component></footer-component>
+<loader-component *ngIf="showLoading"></loader-component>

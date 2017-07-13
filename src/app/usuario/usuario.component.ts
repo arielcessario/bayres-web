@@ -8,6 +8,7 @@ import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 import {CoreService} from "../core/core.service";
 import {DbConnectService} from "../core/db-connect/db-connect.service";
 import {ProvinciaService} from "../core/provincia/provincia.service";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'usuario-component',
@@ -68,7 +69,7 @@ export class UsuarioComponent implements OnInit {
         }
     };
 
-    constructor(private coreService: CoreService, private fb: FormBuilder, private db: DbConnectService) {
+    constructor(private coreService: CoreService, private fb: FormBuilder, private db: DbConnectService, private router: Router) {
 
     }
 
@@ -79,6 +80,13 @@ export class UsuarioComponent implements OnInit {
         this.provincias = ProvinciaService.get();
 
         this.buildForm();
+    }
+
+    goTo(link): void {
+        this.router.navigate([link]);
+        setTimeout(()=> {
+            this.coreService.refreshAll();
+        }, 0);
     }
 
     buildForm() {

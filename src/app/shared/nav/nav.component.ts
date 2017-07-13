@@ -49,8 +49,8 @@ export class NavComponent implements OnInit {
 
     routes: string[];
     titulo: string = '';
-    visibility: string = 'false';
-    visibilitySucursales: string = 'false';
+    visibility: boolean = false;
+    visibilitySucursales: boolean = false;
     visibilityCategorias: boolean = false;
     overUserHeader: boolean = false;
     overUserMenu: boolean = false;
@@ -121,7 +121,7 @@ export class NavComponent implements OnInit {
                 if (localStorage.getItem('currentUser')) {
                     this.nombre = JSON.parse(localStorage.getItem('currentUser')).user.nombre;
                     this.loged = true;
-                    this.visibility = 'false';
+                    this.visibility = false;
                 } else {
                     this.loged = false;
                 }
@@ -177,7 +177,7 @@ export class NavComponent implements OnInit {
     }
 
     overUser() {
-        this.visibility = 'true';
+        this.visibility = true;
     }
 
     getId(event) {

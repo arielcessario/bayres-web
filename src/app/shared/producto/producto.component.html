@@ -7,7 +7,6 @@
             <img class="producto-item-img" [src]="'http://bayresnoproblem.com.ar/images/'+item.fotos[0].nombre"
                  alt="{{item.nombre}}">
             <span class="oferta" *ngIf="item.en_slider == 1">OFERTA</span>
-            <i class="fa fa-shopping-cart" *ngIf="item.en_carrito" aria-hidden="true" title="En Carrito"></i>
             <!--<span class="destacado" *ngIf="item.destacado == 1">OFERTA</span>-->
         </div>
 
@@ -19,6 +18,8 @@
         <i class="fa fa-heart" [ngClass]="{'deseado': item.deseado}" aria-hidden="true"
            (click)="desear(item)"></i>
         <i class="fa fa-search" aria-hidden="true" (click)="goTo(item['producto_id'])"></i>
+        <i (click)="update()" class="fa fa-shopping-cart" *ngIf="item.en_carrito" aria-hidden="true" title="En Carrito"></i>
+        <i (click)="update()" class="fa fa-cart-plus" *ngIf="!item.en_carrito" aria-hidden="true" title="Agregar"></i>
 
         <span class="producto-item-precio">{{((item.precios[0] == undefined)? 0.0:item.precios[0].precio) | currency:'USD':true}}</span>
 

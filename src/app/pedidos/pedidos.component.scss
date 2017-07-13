@@ -2,6 +2,9 @@
 
 :host {
   margin-top: $nav-height;
+  @include breakpoint('medium') {
+    margin-top: $nav-height-desktop;
+  }
   background-color: #222e23;
   width: 100%;
   display: flex;
