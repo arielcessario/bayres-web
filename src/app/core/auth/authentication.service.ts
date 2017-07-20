@@ -22,6 +22,8 @@ export class AuthenticationService {
     signIn(provider) {
         this.sub = this._auth.login(provider)
             .map(data => {
+
+                console.log(data);
                 this.ret = this.dbConnectService.post('usuarios', 'loginSocial', {
                     user: data['email'],
                     token_social: data['token'],

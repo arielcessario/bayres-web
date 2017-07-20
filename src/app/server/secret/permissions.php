@@ -10,7 +10,8 @@ public $permissions = array(
             'loginSocial' => PermissionTypes::Allowed,
             'logout' => PermissionTypes::Allowed,
             'create' => PermissionTypes::Allowed,
-            'update' => PermissionTypes::Client
+            'update' => PermissionTypes::Client,
+            'updateAddress' => PermissionTypes::Client
         ),
         'Productos' => array(
             'getProductos' => PermissionTypes::Allowed,

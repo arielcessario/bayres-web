@@ -10,7 +10,7 @@
         <span>VALOR</span>
     </div>
     <div id="pedido-items">
-        <div class="pedido-item" *ngFor="let item of items">
+        <div class="pedido-item" *ngFor="let item of items" (click)="goTo(item.carrito_id)">
             <div class="pedido-item-body"
                  (click)="selected = (selected == 0 || selected !== item.carrito_id)?item.carrito_id:0">
                 <div>{{item.fecha}}</div>

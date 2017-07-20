@@ -414,7 +414,16 @@ class Productos extends Main
             $this->db->where('carrito_id', $row['carrito_id']);
             $this->db->join("productos p", "p.producto_id=c.producto_id", "LEFT");
             $productos = $this->db->get('carrito_detalles c', null, 'c.carrito_detalle_id, c.carrito_id, c.producto_id, p.nombre, c.cantidad, c.en_oferta, c.precio_unitario');
+
+//            foreach ($productos as $k => $r){
+//                $this->db->where('p.producto_id', $r['producto_id']);
+//                $this->db->join("productos p", "p.producto_id=f.producto_id", "LEFT");
+//                $fotos = $this->db->get('productos_fotos f', null, 'f.producto_foto_id, f.main, f.nombre');
+//                $productos[$k]['fotos'] = $fotos;
+//            }
+
             $results[$key]['productos'] = $productos;
+
         }
         $this->sendResponse($results);
     }
@@ -459,6 +468,12 @@ class Productos extends Main
 
     function getDeseos($params)
     {
+
+        if(!$this->user){
+            $this->sendResponse([]);
+            return;
+        }
+
         $this->db->where('usuario_id', $this->user->id);
         $results = $this->db->get('deseos');
         $this->sendResponse($results);

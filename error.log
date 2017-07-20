@@ -61,3 +61,48 @@
 2017-07-12 15:36:06: Productos->createCarrito - No hay productos en su carrito
 2017-07-12 16:32:32: Main->__construct - No existe el permiso: sendCarritoComprador
 2017-07-12 20:54:26: Productos->createCarrito - No hay productos en su carrito
+2017-07-16 23:12:15: Column 'producto_id' in where clause is ambiguous query: SELECT  f.producto_foto_id, f.main, f.nombre FROM productos_fotos f LEFT JOIN productos p on p.producto_id=f.producto_id WHERE  producto_id = ? 
+2017-07-17 22:32:14: Algorithm not allowed
+2017-07-17 22:33:30: Algorithm not allowed
+2017-07-17 22:36:56: Algorithm not allowed
+2017-07-17 22:37:49: Algorithm not allowed
+2017-07-17 22:38:10: Algorithm not allowed
+2017-07-17 22:38:17: Algorithm not allowed
+2017-07-17 22:39:33: Algorithm not allowed
+2017-07-17 22:39:56: Usuarios->loginSocial - Wrong number of segments
+2017-07-17 22:40:25: Usuarios->loginSocial - Wrong number of segments
+2017-07-17 22:46:00: Usuarios->loginSocial - Wrong number of segments
+2017-07-17 22:46:34: Usuarios->loginSocial - Wrong number of segments
+2017-07-17 22:50:40: Usuarios->loginSocial - Wrong number of segments
+2017-07-17 22:51:49: Usuarios->loginSocial - Wrong number of segments
+2017-07-17 23:36:51: Usuarios->loginSocial - Wrong number of segments
+2017-07-19 10:14:42: Productos->getCarritos - Por favor ingrese con su usuario y contraseña
+2017-07-19 10:14:57: Productos->getCarritos - Por favor ingrese con su usuario y contraseña
+2017-07-19 10:19:35: Productos->getCarritos - Por favor ingrese con su usuario y contraseña
+2017-07-19 10:39:54: Productos->getCarritos - Por favor ingrese con su usuario y contraseña
+2017-07-19 10:40:14: Productos->getCarritos - Por favor ingrese con su usuario y contraseña
+2017-07-19 10:40:47: Productos->getCarritos - Por favor ingrese con su usuario y contraseña
+2017-07-19 10:41:10: Productos->createCarrito - Column 'usuario_id' cannot be null
+2017-07-19 10:43:41: Productos->getCarritos - Por favor ingrese con su usuario y contraseña
+2017-07-19 10:44:30: Productos->getCarritos - Por favor ingrese con su usuario y contraseña
+2017-07-19 10:44:49: Productos->getCarritos - Por favor ingrese con su usuario y contraseña
+2017-07-19 10:45:37: Productos->getCarritos - Por favor ingrese con su usuario y contraseña
+2017-07-19 10:49:57: Productos->getCarritos - Por favor ingrese con su usuario y contraseña
+2017-07-19 10:50:01: Productos->getCarritos - Por favor ingrese con su usuario y contraseña
+2017-07-19 10:50:07: Productos->getCarritos - Por favor ingrese con su usuario y contraseña
+2017-07-19 10:50:20: Productos->getCarritos - Por favor ingrese con su usuario y contraseña
+2017-07-19 10:54:19: Productos->getCarritos - Por favor ingrese con su usuario y contraseña
+2017-07-19 10:56:30: Productos->getCarritos - Por favor ingrese con su usuario y contraseña
+2017-07-19 10:57:39: Productos->getCarritos - Por favor ingrese con su usuario y contraseña
+2017-07-19 11:12:02: Productos->getCarritos - Por favor ingrese con su usuario y contraseña
+2017-07-19 11:12:48: Productos->getCarritos - Por favor ingrese con su usuario y contraseña
+2017-07-19 11:28:37: Productos->getCarritos - Por favor ingrese con su usuario y contraseña
+2017-07-19 11:36:18: Productos->getCarritos - Por favor ingrese con su usuario y contraseña
+2017-07-19 11:36:19: Productos->getCarritos - Por favor ingrese con su usuario y contraseña
+2017-07-19 11:36:40: Productos->getCarritos - Por favor ingrese con su usuario y contraseña
+2017-07-19 11:40:13: Key may not be empty
+2017-07-19 11:44:45: Key may not be empty
+2017-07-19 11:45:09: Usuarios->loginSocial - Wrong number of segments
+2017-07-19 11:45:24: Usuarios->loginSocial - Wrong number of segments
+2017-07-19 12:47:09: Usuarios->loginSocial - Wrong number of segments
+2017-07-19 22:43:05: Productos->desear - Por favor ingrese con su usuario y contraseña

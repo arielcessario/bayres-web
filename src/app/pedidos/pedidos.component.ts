@@ -5,6 +5,7 @@ import {ProvinciaService} from "../core/provincia/provincia.service"
 import {FormGroup, Validators, FormBuilder} from "@angular/forms";
 import {CoreService} from "../core/core.service";
 import {DbConnectService} from "../core/db-connect/db-connect.service";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'pedidos-component',
@@ -15,7 +16,7 @@ import {DbConnectService} from "../core/db-connect/db-connect.service";
 /**
  * TODO:
  */
-export class PedidoComponent implements OnInit {
+export class PedidosComponent implements OnInit {
 
     visible: number = 1;
     id: number;
@@ -39,7 +40,7 @@ export class PedidoComponent implements OnInit {
     nro: string;
 
 
-    constructor(private coreService: CoreService, private dbConnectService: DbConnectService) {
+    constructor(private router: Router,private coreService: CoreService, private dbConnectService: DbConnectService) {
     }
 
 
@@ -55,8 +56,14 @@ export class PedidoComponent implements OnInit {
     }
 
 
-    goTo(path) {
-        // NavService.send(path);
+    goTo(id): void {
+        // console.log('entra');
+        // let link = ['/detail', hero.id];
+        this.router.navigate(['/pedido/', id]);
+
+        setTimeout(()=>{
+            this.coreService.refreshAll();
+        }, 0);
     }
 
     desear(item) {

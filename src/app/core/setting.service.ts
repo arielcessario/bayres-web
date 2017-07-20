@@ -9,6 +9,7 @@ import {CacheService} from './cache/cache.service';
 export class SettingService {
 
     public getProductos: Subject<any> = new Subject<any>();
+    private user: any = {};
 
     constructor(private dbConnectService: DbConnectService, private coreService: CoreService) {
 
@@ -17,6 +18,7 @@ export class SettingService {
         });
 
         if (localStorage.getItem('currentUser')) {
+            this.user = JSON.parse(localStorage.getItem('currentUser')).user;
             this.setUpUser();
         } else {
             this.setUpGuest();
@@ -24,6 +26,7 @@ export class SettingService {
 
         coreService.getLoginStatus.subscribe(data=> {
             if (localStorage.getItem('currentUser')) {
+                this.user = JSON.parse(localStorage.getItem('currentUser')).user;
                 this.setUpUser();
             } else {
                 this.setUpGuest();
@@ -34,10 +37,12 @@ export class SettingService {
     }
 
     setUpUser() {
-        //{"55":1,"445":3,"719":1}
+
+        this.dbConnectService.get('productos', 'getCarritos', {usuario_id: this.user.usuario_id}).subscribe((data)=>{
+        });
 
         let prod = this.dbConnectService.get('productos', 'getProductos', {}).subscribe(productos => {
-            let wish = this.dbConnectService.get('productos', 'getDeseos', {'usuario_id': 2}).subscribe(deseos => {
+            let wish = this.dbConnectService.get('productos', 'getDeseos', {'usuario_id': this.user.usuario_id}).subscribe(deseos => {
 
                 let carrito = (localStorage.getItem('carrito')) ? JSON.parse(localStorage.getItem('carrito')) : {};
                 let len = productos.length - 1;

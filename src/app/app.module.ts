@@ -20,8 +20,10 @@ import {ProductoDetalleComponent} from "./producto-detalle/producto-detalle.comp
 import {CarritoComponent} from "./carrito/carrito.component";
 import {ProvinciaService} from "./core/provincia/provincia.service";
 import {UsuarioComponent} from "./usuario/usuario.component";
-import {PedidoComponent} from "./pedidos/pedidos.component";
+import {PedidosComponent} from "./pedidos/pedidos.component";
+import {PedidoComponent} from "./pedido/pedido.component";
 import {ContactoComponent} from "./contacto/contacto.component";
+import {DeseosComponent} from "./deseos/deseos.component";
 
 let providers = {
     "google": {
@@ -42,7 +44,9 @@ let providers = {
         CarritoComponent,
         UsuarioComponent,
         PedidoComponent,
-        ContactoComponent
+        PedidosComponent,
+        ContactoComponent,
+        DeseosComponent
     ],
     imports: [
         BrowserModule,

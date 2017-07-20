@@ -109,12 +109,16 @@ class Usuarios extends Main
 
             $social = json_decode($url, true);
             $alg = array('RS256');
+            $decoded_token = $this->decode($token, $social, $alg);
         } else {
-            $social = 'nx6As_M_FhOLKrfqdaCe4ZCN';
+            $url = file_get_contents("https://graph.facebook.com/app?access_token=" . $token);
+            global $secret_face;
+            $alg = array('HS256');
+            $social = $secret_face;
         }
 
         try {
-            $decoded_token = $this->decode($token, $social, $alg);
+
             $this->db->where('mail', $params->user);
             $results = $this->db->get('usuarios');
 
@@ -415,7 +419,29 @@ class Usuarios extends Main
 
     }
 
+    function updateAddress($params)
+    {
+        $this->db->startTransaction();
+        try {
 
+
+            $this->db->where('usuario_id', $this->user->id);
+            $data = array(
+                'calle' => $params->calle,
+                'nro' => $params->nro,
+                'provincia_id' => $params->provincia_id
+            );
+
+            $this->db->update('direcciones', $data);
+            $this->db->commit();
+            $this->sendResponse('Ok');
+
+        } catch
+        (Exception $e) {
+            $this->db->rollback();
+            $this->sendError('Caught exception: ' . $e->getMessage() . "\n");
+        }
+    }
 
 
     /**

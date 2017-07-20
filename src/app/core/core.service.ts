@@ -179,6 +179,14 @@ export class CoreService {
 
     }
 
+    public filterCarritos(params, values, exact_match) {
+
+        let carritos = CacheService.get('productos', 'getCarritos');
+
+        return this.filter(params, values, exact_match, carritos);
+
+    }
+
     public filter(params, values, exact_match, data) {
 
         if (data.length == 0) {

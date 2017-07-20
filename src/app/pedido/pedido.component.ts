@@ -1,22 +1,22 @@
 import {Component, OnInit} from '@angular/core';
-// import {CarritoService} from "../shared/carrito/carrito.service";
+// import {PedidoService} from "../shared/pedido/pedido.service";
 // import {Sucursal} from "../sucursales/sucursal.model";
 import {ProvinciaService} from "../core/provincia/provincia.service"
 import {FormGroup, Validators, FormBuilder} from "@angular/forms";
 import {CoreService} from "../core/core.service";
 import {DbConnectService} from "../core/db-connect/db-connect.service";
-import {Router} from "@angular/router";
+import {Router, ActivatedRoute} from "@angular/router";
 
 @Component({
-    selector: 'carrito-component',
-    templateUrl: './carrito.component.html',
-    styleUrls: ['./carrito.component.scss']
+    selector: 'pedido-component',
+    templateUrl: './pedido.component.html',
+    styleUrls: ['./pedido.component.scss']
 })
 
 /**
  * TODO:
  */
-export class CarritoComponent implements OnInit {
+export class PedidoComponent implements OnInit {
 
     visible: number = 1;
     id: number;
@@ -68,7 +68,7 @@ export class CarritoComponent implements OnInit {
     nro: string;
 
 
-    constructor(private coreService: CoreService, private router: Router, private dbConnectService: DbConnectService, private fb: FormBuilder) {
+    constructor(private coreService: CoreService, private router: Router, private route: ActivatedRoute, private dbConnectService: DbConnectService, private fb: FormBuilder) {
     }
 
     confirmar() {
@@ -91,27 +91,7 @@ export class CarritoComponent implements OnInit {
             productos[this.items[i].producto_id] = this.items[i].cantidad;
         }
 
-        if((this.user.calle == '' || this.user.calle == undefined || this.user.calle == null)){
-            let params = {
-                calle: this.formEnvio.controls['calle'].value,
-                nro: this.formEnvio.controls['nro'].value,
-                provincia_id: this.lugarEnvio
-            };
-
-            this.dbConnectService.post('usuarios', 'updateAddress', params).subscribe((data)=>{
-                this.user.calle = params.calle;
-                this.user.nro = params.nro;
-                this.user.provincia_id = params.provincia_id;
-
-                let tmp = JSON.parse(localStorage.getItem('currentUser'));
-                tmp.user = this.user;
-                localStorage.setItem('currentUser', JSON.stringify(tmp));
-
-
-            });
-        }
-
-        this.dbConnectService.post('productos', 'createCarrito',
+        this.dbConnectService.post('productos', 'createPedido',
             {
                 productos: productos,
                 origen: this.tipoEnvio,
@@ -126,10 +106,10 @@ export class CarritoComponent implements OnInit {
                 });
 
 
-                this.dbConnectService.post('mails', 'sendCarritoComprador', {
+                this.dbConnectService.post('mails', 'sendPedidoComprador', {
                     productos: productos,
                     envio: ((this.tipoEnvio == 1) ? 'Envio a ' : 'Retira por ') + ((this.tipoEnvio == 1) ? this.provincias[this.lugarEnvio - 1]['name'] + ' - ' + this.user.calle + ' ' + this.user.nro : this.sucursales[this.sucursal - 1]['nombre'] + ' - ' + this.sucursales[this.sucursal - 1]['direccion']),
-                    carrito_id: response.carrito_id
+                    pedido_id: response.pedido_id
                 })
                     .subscribe(()=> {
 
@@ -145,36 +125,80 @@ export class CarritoComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.dbConnectService.get('sucursales', 'get', {all: false}).subscribe((data)=> {
-            this.sucursales = data;
+
+
+        this.route.params.subscribe(params => {
+            this.id = +params['id'];
+
+            this.coreService.getProductos.subscribe((data)=> {
+                this.data = this.coreService.filterCarritos('carrito_id', params['id'], 'true')[0];
+                console.log(this.data);
+                this.items = [];
+                let len = this.data.productos.length;
+
+                while(len--){
+                    let prod = this.coreService.filterProducts('producto_id', ''+this.data.productos[len].producto_id, 'true')[0];
+                    prod.cantidad = this.data.productos[len].cantidad;
+                    prod.precio_unitario = this.data.productos[len].precio_unitario;
+                    this.items.push(prod);
+                }
+
+            });
+
+            //     this.coreService.getProductos.subscribe((data)=> {
+            //
+            //         this.data = this.coreService.filterProducts('producto_id', params['id'], 'true')[0];
+            //         if (!this.data.en_carrito && !this.data.cantidad) {
+            //             this.data.cantidad = 1;
+            //         }
+            //
+            //     });
         });
 
-        this.coreService.getProductos.subscribe(productos => {
-            this.items = this.coreService.filterProducts('en_carrito', 'true', 'true');
-        });
 
-        this.coreService.getCartStatus.subscribe((data)=> {
-            this.total = data.total;
-        });
-
-        this.coreService.getLoginStatus.subscribe((data)=>{
-            this.user = (localStorage.getItem('currentUser')) ? (JSON.parse(localStorage.getItem('currentUser'))).user : {};
-            if(this.user != {}){
-                this.buildForm();
-            }
-
-        });
-
-        this.provincias = ProvinciaService.get();
-
-
-        this.user = (localStorage.getItem('currentUser')) ? (JSON.parse(localStorage.getItem('currentUser'))).user : {};
+        // this.dbConnectService.get('sucursales', 'get', {all: false}).subscribe((data)=> {
+        //     this.sucursales = data;
+        // });
+        //
+        // this.coreService.getProductos.subscribe(productos => {
+        //     this.items = this.coreService.filterProducts('en_pedido', 'true', 'true');
+        // });
+        //
+        // this.coreService.getCartStatus.subscribe((data)=> {
+        //     this.total = data.total;
+        // });
+        //
+        // this.provincias = ProvinciaService.get();
+        //
+        //
+        // this.user = (localStorage.getItem('currentUser')) ? (JSON.parse(localStorage.getItem('currentUser'))).user : {};
 
         this.buildForm();
     }
 
+    getStatusText(status) {
+        switch (status) {
+            case 1:
+                return 'Pedido';
+            case 2:
+                return 'Entregado';
+        }
+    }
+
+
+
     update(item) {
-        delete item.en_carrito;
+
+        if (!item.en_carrito && !item.cantidad) {
+            item.cantidad = 1;
+        }
+
+        if (item.en_carrito) {
+            delete item.en_carrito;
+        } else {
+            item.en_carrito = true;
+        }
+
         this.coreService.updateCarrito(item);
     }
 
